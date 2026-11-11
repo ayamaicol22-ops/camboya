@@ -1,146 +1,111 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Póster Camboya</title><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Póster Camboya</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500&family=Press+Start+2P&family=Noto+Sans+Khmer:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&family=Press+Start+2P&display=swap">
 <style>
-/* Tres capas: (1) intro y menú con estética del juego (pixel, universidad, telón);
-   (2) "Habla con Camboya", chat realista tipo mensajería; (3) Fuentes, página sobria. */
+/* Minimal: portada con la universidad, menú de dos botones, chat limpio con el personaje visible. */
 :root{
-  --bg:#FFFFFF; --surface:#F6F0E4; --ink:#1E2433; --muted:#5E6577; --navy:#1B2A5C; --blue:#2E5AAC; --gold:#8C6420; --line:#D9DCE5; --red:#C8102E;
-  --chat-bg:#EEF1F7; --bub-me:#2E5AAC; --bub-me-ink:#FFFFFF; --bub-them:#FFFFFF; --bub-them-ink:#1E2433; --panel:#FFFFFF; --chip:#E3E9F6; --chip-ink:#1B2A5C;
-  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; --pixel:"Press Start 2P",ui-monospace,monospace; --khmer:"Noto Sans Khmer","Khmer OS",sans-serif;
-  --g-gold:#FFB627; --g-ink:#2B1A14; --g-cream:#FFF3D6; --g-deep:#120A1C;
+  --bg:#FAFAF7; --surface:#F1EFE8; --card:#FFFFFF; --ink:#1A1F2E; --muted:#6B7180; --line:#E6E3DA; --navy:#1B2A5C; --blue:#2E5AAC; --red:#C8102E; --gold:#8C6420;
+  --me:#1B2A5C; --me-ink:#FFFFFF; --them:#FFFFFF; --them-ink:#1A1F2E; --chip:#EDEAE1;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; --pixel:"Press Start 2P",ui-monospace,monospace;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11162A;--surface:#1B2240;--ink:#E7E9F2;--muted:#A3A9BD;--navy:#C9D5F5;--blue:#8FB0F0;--gold:#E3BE7E;--line:#2C3558;--red:#FF6B7F;--chat-bg:#0E1324;--bub-me:#3D6BC4;--bub-me-ink:#FFFFFF;--bub-them:#1E2644;--bub-them-ink:#E7E9F2;--panel:#161D36;--chip:#26305A;--chip-ink:#DCE4FA;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#11162A;--surface:#1B2240;--ink:#E7E9F2;--muted:#A3A9BD;--navy:#C9D5F5;--blue:#8FB0F0;--gold:#E3BE7E;--line:#2C3558;--red:#FF6B7F;--chat-bg:#0E1324;--bub-me:#3D6BC4;--bub-me-ink:#FFFFFF;--bub-them:#1E2644;--bub-them-ink:#E7E9F2;--panel:#161D36;--chip:#26305A;--chip-ink:#DCE4FA;color-scheme:dark}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
-button{font:inherit;cursor:pointer}
-.view[hidden]{display:none!important}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#10131C;--surface:#1A1F2C;--card:#171C28;--ink:#ECEDF2;--muted:#9AA0AE;--line:#262C3B;--navy:#C9D5F5;--blue:#8FB0F0;--red:#FF6B7F;--gold:#E3BE7E;--me:#3D5FA8;--me-ink:#FFFFFF;--them:#1E2433;--them-ink:#ECEDF2;--chip:#232A3A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10131C;--surface:#1A1F2C;--card:#171C28;--ink:#ECEDF2;--muted:#9AA0AE;--line:#262C3B;--navy:#C9D5F5;--blue:#8FB0F0;--red:#FF6B7F;--gold:#E3BE7E;--me:#3D5FA8;--me-ink:#FFFFFF;--them:#1E2433;--them-ink:#ECEDF2;--chip:#232A3A;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;color:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.view[hidden]{display:none!important}
+.px{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
 
-/* ---------- 1. Intro y menú (estética del juego) ---------- */
-#intro{position:fixed;inset:0;z-index:20;background:var(--g-deep);color:var(--g-cream);overflow:hidden;display:flex;align-items:center;justify-content:center;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:calc(24px + env(safe-area-inset-top,0px)) calc(24px + env(safe-area-inset-bottom,0px))}
-#intro .bg{position:absolute;inset:0;background:#2a3b6b url("universidad.webp") center/cover no-repeat;image-rendering:pixelated}
-#intro .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,10,28,.25) 0%,rgba(18,10,28,.55) 55%,rgba(18,10,28,.88) 100%);transition:background .6s}
-#intro.menu .shade{background:rgba(18,10,28,.78)}
-.curtain{position:absolute;top:0;width:50%;height:100%;z-index:5;background:repeating-linear-gradient(90deg,#2a0404 0,#580a0a 15px,#991b1b 30px,#580a0a 45px,#2a0404 60px);transition:transform 1.2s cubic-bezier(.77,0,.175,1);pointer-events:none}
-.curtain.l{left:0;border-right:6px solid var(--g-gold)} .curtain.r{right:0;border-left:6px solid var(--g-gold)}
-#intro.open .curtain.l{transform:translateX(-102%)} #intro.open .curtain.r{transform:translateX(102%)}
-.ctop{position:absolute;top:0;left:0;right:0;height:28px;z-index:6;background:linear-gradient(180deg,#991b1b,#450a0a);border-bottom:4px solid var(--g-gold);transition:opacity 1s}
-#intro.open .ctop{opacity:0}
-.icontent{position:relative;z-index:3;width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
-.flagpix{width:84px;height:56px;border:3px solid var(--g-cream);box-shadow:0 4px 0 #000;image-rendering:pixelated}
-.ptitle{font-family:var(--pixel);color:var(--g-gold);text-shadow:3px 3px 0 #000;font-size:clamp(17px,5vw,26px);line-height:1.5}
-.psub{font-family:var(--pixel);color:var(--g-cream);text-shadow:2px 2px 0 #000;font-size:clamp(9px,2.6vw,11px);line-height:1.9}
-.khm{font-family:var(--khmer);font-size:22px;color:var(--g-cream);text-shadow:2px 2px 0 #000}
-.tap{font-family:var(--pixel);font-size:13px;color:var(--g-gold);text-shadow:2px 2px 0 #000;animation:blink 1.2s infinite;margin-top:10px;background:none;border:0;padding:10px}
-@keyframes blink{50%{opacity:.15}}
-.menu-card{display:none;flex-direction:column;gap:16px;width:100%;background:rgba(42,26,58,.92);border:3px solid var(--g-gold);border-radius:10px;padding:20px 18px;box-shadow:0 6px 0 #000}
-#intro.menu .menu-card{display:flex} #intro.menu .tap{display:none}
-.menu-card h2{font-family:var(--pixel);font-size:12px;color:var(--g-cream);line-height:1.8;margin:0}
-.gbtn{display:flex;align-items:center;gap:14px;width:100%;text-align:left;min-height:64px;padding:14px 16px;border:3px solid #8a4b00;background:var(--g-gold);color:var(--g-ink);border-radius:8px;box-shadow:0 5px 0 #8a4b00;transition:transform .1s,box-shadow .1s}
-.gbtn:active{transform:translateY(4px);box-shadow:0 1px 0 #8a4b00}
-.gbtn.blue{background:#6FB3FF;border-color:#1f4f8f;box-shadow:0 5px 0 #1f4f8f}
-.gbtn .gi{font-size:28px;flex:none}
-.gbtn b{display:block;font-family:var(--pixel);font-size:13px;line-height:1.6}
-.gbtn span{display:block;font-weight:700;font-size:14px;line-height:1.3}
-.audio-tg{position:absolute;z-index:7;top:calc(10px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:44px;height:44px;border:2px solid var(--g-gold);background:rgba(42,26,58,.8);color:var(--g-cream);border-radius:8px;font-size:18px}
-.credit{font-family:var(--pixel);font-size:8px;color:var(--g-cream);opacity:.8;line-height:1.8}
+/* ---------- portada ---------- */
+#intro{position:fixed;inset:0;z-index:20;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+  padding-block:calc(28px + env(safe-area-inset-top,0px)) calc(28px + env(safe-area-inset-bottom,0px))}
+#intro .bg{position:absolute;inset:0;background:#2a3b6b url("universidad.webp") center 30%/cover no-repeat;image-rendering:pixelated;transform:scale(1.04);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.1) translateY(-1.5%)}}
+#intro .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,24,0) 30%,rgba(10,12,24,.72) 68%,rgba(10,12,24,.92) 100%)}
+.ic{position:relative;width:min(520px,100%);margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.flag{width:46px;height:30px;border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+.ptitle{font-family:var(--pixel);font-size:clamp(26px,8vw,38px);line-height:1.25;letter-spacing:.02em;text-shadow:0 3px 0 rgba(0,0,0,.45)}
+.isub{font-size:15px;line-height:1.45;color:rgba(255,255,255,.86);max-width:34ch}
+.imeta{font-size:12.5px;color:rgba(255,255,255,.6);letter-spacing:.04em}
+.tap{align-self:flex-start;margin-top:8px;border:0;background:none;color:#FFD27A;font-family:var(--pixel);font-size:11px;letter-spacing:.06em;padding:12px 0;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+.menu{display:none;flex-direction:column;gap:10px;margin-top:6px}
+#intro.on .menu{display:flex;animation:up .35s ease-out} #intro.on .tap{display:none}
+@keyframes up{from{opacity:0;transform:translateY(10px)}}
+.mb{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;transition:background .15s,transform .1s}
+.mb:active{transform:scale(.985)} .mb:hover{background:rgba(255,255,255,.16)}
+.mb.primary{background:#fff;color:#1A1F2E;border-color:#fff}
+.mb .mi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px;flex:none;background:rgba(255,255,255,.14)}
+.mb.primary .mi{background:#EEF2FA}
+.mb b{display:block;font-size:16px;font-weight:700;line-height:1.2}
+.mb span{display:block;font-size:13px;opacity:.72;line-height:1.3;margin-top:2px}
+.mb .ar{margin-left:auto;font-size:20px;opacity:.5}
 
-/* ---------- barra superior compartida ---------- */
-.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;
-  padding-block:10px;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
-.back{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;height:40px;padding:0 14px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:6px;flex:none}
-.topbar .tt{font-weight:800;color:var(--navy);font-size:16px;line-height:1.2;min-width:0}
-.topbar .tt small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+/* ---------- barra superior ---------- */
+.top{display:flex;align-items:center;gap:8px;padding-block:calc(8px + env(safe-area-inset-top,0px)) 8px;background:var(--bg)}
+.ib{width:40px;height:40px;border-radius:50%;border:0;background:transparent;display:grid;place-items:center;font-size:19px;flex:none}
+.ib:hover{background:var(--surface)}
+.top h1{font-size:16px;font-weight:700;margin:0;flex:1;text-align:center;letter-spacing:-.01em}
 
-/* ---------- 2. Habla con Camboya (chat realista) ---------- */
-#chat{height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--chat-bg);overflow-y:auto}
-#chat .topbar{position:relative;top:0}
-.cwrap{width:100%;max-width:760px;margin:0 auto;display:flex;flex-direction:column;flex:1 1 0;min-height:auto}
-.yearbar{background:var(--panel);border-bottom:1px solid var(--line);padding-block:10px 12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.yearbar .in{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
-.yrow{display:flex;align-items:center;gap:12px}
-.ybig{font-weight:800;font-size:30px;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1;min-width:84px}
-.ystep{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:18px;flex:none}
-input[type=range]{flex:1;min-width:0;accent-color:var(--red);height:32px}
-.ctx{display:flex;flex-wrap:wrap;gap:6px 8px;font-size:13px}
-.ctx .k{background:var(--surface);color:var(--navy);border-radius:999px;padding:2px 10px;font-weight:700;font-variant-numeric:tabular-nums}
-.ctx .ev{flex-basis:100%;color:var(--ink);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
-.ctx .ev.open{-webkit-line-clamp:unset}
-.people{flex:none;display:flex;gap:8px;overflow-x:auto;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));scrollbar-width:none}
-.people::-webkit-scrollbar{display:none}
-.pc{flex:none;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:5px 14px 5px 5px;font-size:14px;font-weight:700}
-.pc[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset}
-.pc small{display:block;font-weight:500;color:var(--muted);font-size:11.5px;line-height:1.1}
-.av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px}
-.who{display:flex;align-items:center;gap:10px;padding-block:6px 10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.who .av{width:46px;height:46px;font-size:18px}
-.who b{display:block;font-size:16px;color:var(--navy);line-height:1.2}
-.who .wr{font-size:13px;color:var(--muted);line-height:1.3;display:block}
-.who .st{margin-left:auto;font-size:12px;color:var(--muted);text-align:right;flex:none}
-.msgs{flex:1 1 0;overflow-y:auto;min-height:170px;display:flex;flex-direction:column;gap:8px;padding-block:8px 12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.m{max-width:84%;padding:9px 13px;border-radius:16px;font-size:15.5px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere;position:relative}
-.m.them{align-self:flex-start;background:var(--bub-them);color:var(--bub-them-ink);border-bottom-left-radius:5px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
-.m.me{align-self:flex-end;background:var(--bub-me);color:var(--bub-me-ink);border-bottom-right-radius:5px}
-.m .meta{display:flex;gap:10px;align-items:center;margin-top:4px;font-size:11.5px;color:var(--muted)}
-.m .say{border:0;background:none;color:var(--blue);font-weight:700;font-size:12px;padding:2px 0}
-.sys{align-self:center;font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;text-align:center;max-width:92%}
-.typing{display:inline-flex;gap:4px} .typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:dot 1s infinite} .typing i:nth-child(2){animation-delay:.15s} .typing i:nth-child(3){animation-delay:.3s}
-@keyframes dot{50%{opacity:.25;transform:translateY(-3px)}}
-.chips{flex:none;display:flex;gap:8px;overflow-x:auto;padding-block:4px 8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chips button{flex:none;border:0;background:var(--chip);color:var(--chip-ink);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600}
-.compose{position:sticky;bottom:0;background:var(--panel);border-top:1px solid var(--line);display:flex;gap:8px;align-items:flex-end;
-  padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px),calc((100% - 760px)/2));padding-right:max(12px,env(safe-area-inset-right,0px),calc((100% - 760px)/2))}
-.compose textarea{flex:1;min-width:0;resize:none;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:20px;padding:10px 14px;font:inherit;font-size:16px;line-height:1.35;max-height:120px}
-.cbtn{width:44px;height:44px;border-radius:50%;border:0;flex:none;display:grid;place-items:center;font-size:18px}
-.cbtn.send{background:var(--blue);color:#fff}
-.cbtn.mic{background:var(--chip);color:var(--chip-ink)}
-.cbtn.mic.on{background:var(--red);color:#fff;animation:pulse 1.2s infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(200,16,46,.25)}}
-.cbtn:disabled{opacity:.45}
-.voice{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;height:40px;padding:0 12px;font-size:13px;font-weight:700;margin-left:auto;flex:none}
-.voice[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
-.stage{position:relative;flex:none;height:clamp(150px,24vh,250px);margin:4px max(16px,env(safe-area-inset-right,0px)) 6px max(16px,env(safe-area-inset-left,0px));border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(20,30,60,.15);background:#cfd8e6}
-.stage .bgsv{position:absolute;inset:0;width:100%;height:100%;display:block}
-.stage .ptw{position:absolute;left:50%;bottom:0;height:100%;transform:translateX(-50%);transition:transform .3s}
+/* ---------- chat ---------- */
+#chat{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow-y:auto;background:var(--bg)}
+.col{width:100%;max-width:720px;margin:0 auto;display:flex;flex-direction:column;flex:1 1 0;min-height:auto}
+.year{display:flex;flex-direction:column;align-items:center;gap:2px;padding-block:0 6px}
+.yrow{display:flex;align-items:center;gap:14px}
+.yb{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:16px}
+.yv{font-size:28px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--navy);min-width:76px;text-align:center}
+.yr{width:min(320px,80%);accent-color:var(--red);height:22px;margin:0}
+.ydata{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;text-align:center}
+.cast{display:flex;justify-content:center;gap:14px;padding-block:6px 4px}
+.ca{border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:600;color:var(--muted);width:58px}
+.ca .ring{width:46px;height:46px;border-radius:50%;overflow:hidden;background:var(--surface);box-shadow:0 0 0 2px transparent;transition:box-shadow .15s}
+.ca .ring .pt{width:150%;height:150%;margin:-6% 0 0 -25%;display:block}
+.ca[aria-pressed="true"]{color:var(--ink)} .ca[aria-pressed="true"] .ring{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--red)}
+.stage{position:relative;flex:none;height:clamp(140px,22vh,230px);margin-block:6px 2px;border-radius:20px;overflow:hidden;background:var(--surface)}
+.stage .bgsv{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:.92}
+.stage .ptw{position:absolute;left:50%;bottom:0;height:100%;transform:translateX(-50%)}
 .stage .pt{height:100%;display:block}
-.stage.talking .ptw{animation:bob .5s ease-in-out infinite alternate}
+.talking .ptw{animation:bob .45s ease-in-out infinite alternate}
 @keyframes bob{to{transform:translateX(-50%) translateY(-2px)}}
 .pt .mo{opacity:0;transform-box:fill-box;transform-origin:center}
-.talking .pt .mo{opacity:1;animation:talk .18s ease-in-out infinite alternate}
+.talking .pt .mo{opacity:1;animation:talk .17s ease-in-out infinite alternate}
 .talking .pt .mc{opacity:0}
 @keyframes talk{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
-.pt .eyes{transform-box:fill-box;transform-origin:center;animation:blink 4.2s infinite}
-@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
-.tagn{position:absolute;left:10px;bottom:10px;background:rgba(15,20,40,.72);color:#fff;border-radius:10px;padding:6px 10px;line-height:1.2;max-width:60%}
-.tagn b{display:block;font-size:15px}.tagn span{font-size:12px;opacity:.9}
-.live{position:absolute;right:10px;top:10px;background:rgba(15,20,40,.72);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
-.live i{width:8px;height:8px;border-radius:50%;background:#3CCB6B}
-.stage.talking .live i{background:#FF5D5D;animation:pulse 1s infinite}
-.wave{display:none;gap:2px;align-items:center;height:12px}.wave s{width:3px;background:#fff;border-radius:2px;animation:wv .5s infinite alternate}
-.wave s:nth-child(2){animation-delay:.12s}.wave s:nth-child(3){animation-delay:.24s}.wave s:nth-child(4){animation-delay:.36s}
-.stage.talking .wave{display:inline-flex}
+.pt .eyes{transform-box:fill-box;transform-origin:center;animation:wink 4.2s infinite}
+@keyframes wink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.who{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--muted);padding-block:4px 2px;min-height:24px}
+.who b{color:var(--ink);font-weight:700}
+.dot{width:7px;height:7px;border-radius:50%;background:#3CB86A;flex:none}
+.wave{display:none;gap:2px;align-items:center;height:12px}.wave s{width:3px;border-radius:2px;background:var(--red);animation:wv .45s infinite alternate}
+.wave s:nth-child(2){animation-delay:.1s}.wave s:nth-child(3){animation-delay:.2s}
 @keyframes wv{from{height:3px}to{height:12px}}
-.yrtag{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.88);color:#1B2A5C;border-radius:8px;padding:3px 9px;font-weight:800;font-size:16px;font-variant-numeric:tabular-nums}
-.av.pa{background:#E3E9F6;overflow:hidden;display:block}
-.av.pa .pt{width:150%;height:150%;margin:-6% 0 0 -25%;display:block}
-.mode{flex:none;font-size:11.5px;line-height:1.35;color:var(--muted);text-align:center;padding:0 16px 6px}
+.talking ~ .who .dot{display:none} .talking ~ .who .wave{display:inline-flex}
+.msgs{flex:1 1 0;min-height:150px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding-block:8px}
+.ynote{align-self:center;max-width:94%;text-align:center;font-size:12.5px;line-height:1.45;color:var(--muted);background:var(--surface);border-radius:12px;padding:8px 12px;margin-block:2px 6px}
+.ynote b{color:var(--ink)}
+.m{max-width:82%;padding:9px 13px;border-radius:18px;font-size:15.5px;line-height:1.45;overflow-wrap:anywhere;animation:pop .18s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(4px)}}
+.m.them{align-self:flex-start;background:var(--them);color:var(--them-ink);border-bottom-left-radius:6px;box-shadow:0 1px 2px rgba(20,25,40,.06)}
+.m.me{align-self:flex-end;background:var(--me);color:var(--me-ink);border-bottom-right-radius:6px}
+.m .say{display:inline-block;border:0;background:none;padding:2px 0 0;font-size:12px;font-weight:600;color:var(--muted)}
+.typing{display:inline-flex;gap:4px;padding:3px 0}.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dt .9s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dt{50%{opacity:.25;transform:translateY(-2px)}}
+.chips{flex:none;display:flex;gap:6px;overflow-x:auto;padding-block:4px 8px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;border:0;background:var(--chip);border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:500}
+.bar{position:sticky;bottom:0;background:var(--bg);padding-block:6px calc(10px + env(safe-area-inset-bottom,0px))}
+.bar form{max-width:720px;margin:0 auto;display:flex;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:4px 4px 4px 14px}
+.bar input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;color:var(--ink);padding:9px 0;outline:none}
+.send,.mic{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;font-size:16px;flex:none}
+.send{background:var(--navy);color:var(--bg)}
+.mic{background:transparent}
+.mic.on{background:var(--red);color:#fff;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(200,16,46,.2)}}
+.foot{text-align:center;font-size:11.5px;color:var(--muted);padding-top:6px}
+.foot a{color:var(--blue);font-weight:600;text-decoration:none}
+@media (max-height:700px){.stage{height:118px}.msgs{min-height:140px}.year{padding-bottom:2px}.cast{padding-block:2px}.yv{font-size:24px}.cast{gap:10px}.ca .ring{width:40px;height:40px}}
 
-@media (max-width:640px){
- #chat .topbar .tt small{display:none}
- #chat .topbar{padding-block:8px}
- .yearbar{padding-block:6px 8px}.yearbar .in{gap:5px}
- .ybig{font-size:25px;min-width:70px}.ystep{width:36px;height:36px}
- .ctx{font-size:12px;gap:4px 6px}.ctx .ev{-webkit-line-clamp:1}
- .people{padding-block:6px}.pc{padding:3px 12px 3px 3px;font-size:13px}.pc small{display:none}.pc .av{width:32px;height:32px}
- .stage{height:150px;margin-top:2px}
- .tagn{padding:4px 8px}.tagn b{font-size:14px}.tagn span{font-size:11px}
- .mode{padding-bottom:4px}
-}
 /* ---------- 3. Fuentes ---------- */
 #fuentes{padding-bottom:48px}
 .fwrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:36px;padding-block:24px 0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -169,56 +134,49 @@ input[type=range]{flex:1;min-width:0;accent-color:var(--red);height:32px}
 .note b{color:var(--navy)}
 footer{color:var(--muted);font-size:14px}
 @media (max-width:640px){.poster{grid-template-columns:minmax(0,1fr)}}
+
+.topbar{display:flex;align-items:center;gap:10px;background:var(--bg);border-bottom:1px solid var(--line);padding-block:calc(10px + env(safe-area-inset-top,0px)) 10px;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+.back{border:1px solid var(--line);background:var(--card);border-radius:999px;height:38px;padding:0 14px;font-weight:600;font-size:14px;flex:none}
+.topbar .tt{font-weight:700;font-size:15px;line-height:1.2}.topbar .tt small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+
+#fuentes .topbar{position:sticky;top:0;z-index:5}
 </style>
 
-<!-- ===================== INTRO / MENÚ ===================== -->
+<!-- portada -->
 <div id="intro" class="view">
   <div class="bg" aria-hidden="true"></div><div class="shade" aria-hidden="true"></div>
-  <div class="ctop" aria-hidden="true"></div><div class="curtain l" aria-hidden="true"></div><div class="curtain r" aria-hidden="true"></div>
-  <button class="audio-tg" id="snd" aria-label="Sonido">🔊</button>
-  <div class="icontent">
-    <svg class="flagpix" viewBox="0 0 36 24" aria-label="Bandera de Camboya" shape-rendering="crispEdges"><rect width="36" height="24" fill="#032EA1"/><rect y="6" width="36" height="12" fill="#E00025"/><g fill="#fff"><rect x="12" y="15" width="12" height="2"/><rect x="13" y="12" width="10" height="3"/><rect x="14" y="10" width="2" height="2"/><rect x="17" y="8" width="2" height="4"/><rect x="20" y="10" width="2" height="2"/><rect x="17" y="7" width="2" height="1"/></g></svg>
-    <div class="khm" lang="km">ជំរាបសួរ</div>
-    <div class="ptitle">CAMBOYA<br>2021–2025</div>
-    <div class="psub">¿Puede sostener su crecimiento<br>pese a depender de EE. UU. y China?</div>
-    <div class="credit">MICHAEL AYA · RR. II. Y ESTUDIOS POLÍTICOS</div>
+  <div class="ic px">
+    <svg class="flag" viewBox="0 0 36 24" aria-label="Bandera de Camboya" shape-rendering="crispEdges"><rect width="36" height="24" fill="#032EA1"/><rect y="6" width="36" height="12" fill="#E00025"/><g fill="#fff"><rect x="12" y="15" width="12" height="2"/><rect x="13" y="12" width="10" height="3"/><rect x="14" y="10" width="2" height="2"/><rect x="17" y="8" width="2" height="4"/><rect x="20" y="10" width="2" height="2"/><rect x="17" y="7" width="2" height="1"/></g></svg>
+    <div class="ptitle">CAMBOYA</div>
+    <div class="isub">¿Puede sostener su crecimiento pese a depender de EE.&nbsp;UU. y de China?</div>
+    <div class="imeta">Michael Aya · Macroeconomía · RR.&nbsp;II. y Estudios Políticos</div>
     <button class="tap" id="tap">TOCA PARA CONTINUAR</button>
-    <div class="menu-card" role="menu">
-      <h2>ELIGE UNA OPCIÓN</h2>
-      <button class="gbtn" id="go-fuentes" role="menuitem"><span class="gi">📚</span><span><b>FUENTES</b><span>Todas las fuentes del póster, por sección.</span></span></button>
-      <button class="gbtn blue" id="go-chat" role="menuitem"><span class="gi">💬</span><span><b>HABLA CON CAMBOYA</b><span>Conversa con personajes de 1995 a 2026.</span></span></button>
+    <div class="menu">
+      <button class="mb primary" id="go-chat"><span class="mi">💬</span><span><b>Habla con Camboya</b><span>Conversa con personajes de 1995 a 2026</span></span><span class="ar">›</span></button>
+      <button class="mb" id="go-fuentes"><span class="mi">📚</span><span><b>Fuentes</b><span>Datos y referencias del póster</span></span><span class="ar">›</span></button>
     </div>
   </div>
 </div>
 
-<!-- ===================== HABLA CON CAMBOYA ===================== -->
+<!-- chat -->
 <div id="chat" class="view" hidden>
-  <div class="topbar">
-    <button class="back" data-home>← Menú</button>
-    <div class="tt">Habla con Camboya<small>Personajes ficticios con datos reales</small></div>
-    <button class="voice" id="voiceTg" aria-pressed="false" hidden>🔊 Voz</button>
-  </div>
-  <div class="yearbar"><div class="in">
-    <div class="yrow">
-      <button class="ystep" id="yPrev" aria-label="Año anterior">‹</button>
-      <div class="ybig" id="yBig">2025</div>
-      <input type="range" id="yRange" min="1995" max="2026" step="1" value="2025" aria-label="Año">
-      <button class="ystep" id="yNext" aria-label="Año siguiente">›</button>
+  <div class="top px"><button class="ib" data-home aria-label="Volver al menú">←</button><h1>Habla con Camboya</h1><button class="ib" id="vol" aria-label="Voz activada" aria-pressed="true">🔊</button></div>
+  <div class="col px">
+    <div class="year">
+      <div class="yrow"><button class="yb" id="yPrev" aria-label="Año anterior">‹</button><div class="yv" id="yv">2025</div><button class="yb" id="yNext" aria-label="Año siguiente">›</button></div>
+      <input class="yr" type="range" id="yr" min="1995" max="2026" value="2025" aria-label="Año">
+      <div class="ydata" id="ydata"></div>
     </div>
-    <div class="ctx" id="ctx"></div>
-  </div></div>
-  <div class="cwrap">
-    <div class="people" id="people" role="group" aria-label="Elige con quién hablar"></div>
+    <div class="cast" id="cast" role="group" aria-label="Elige con quién hablar"></div>
     <div class="stage" id="stage"></div>
+    <div class="who" id="who"></div>
     <div class="msgs" id="msgs" aria-live="polite"></div>
-    <div class="mode" id="mode"></div>
     <div class="chips" id="chips"></div>
   </div>
-  <form class="compose" id="compose">
-    <button type="button" class="cbtn mic" id="mic" aria-label="Hablar por micrófono" hidden>🎤</button>
-    <textarea id="txt" rows="1" placeholder="Escribe tu pregunta…" aria-label="Mensaje"></textarea>
-    <button type="submit" class="cbtn send" id="send" aria-label="Enviar">➤</button>
-  </form>
+  <div class="bar px">
+    <form id="f"><input id="txt" autocomplete="off" placeholder="Escribe tu pregunta…" aria-label="Mensaje"><button type="button" class="mic" id="mic" aria-label="Hablar" hidden>🎤</button><button class="send" aria-label="Enviar">➤</button></form>
+    <div class="foot" id="foot"></div>
+  </div>
 </div>
 
 <!-- ===================== FUENTES ===================== -->
@@ -248,6 +206,8 @@ footer{color:var(--muted);font-size:14px}
     <footer>Póster individual · Michael Aya · Relaciones Internacionales · 2026</footer>
   </div>
 </div>
+
+
 
 <script>
 /* ===================== Personajes ilustrados (SVG) ===================== */
@@ -351,7 +311,6 @@ function scene(id){return `<svg class="bgsv" viewBox="0 0 400 200" preserveAspec
 return {portrait,scene};
 })();
 
-/* ===================== Datos por año (Banco Mundial, FMI, INE; ver Fuentes) ===================== */
 const Y0=1995;
 const GDP=[9.9,5.9,4.0,4.7,12.7,10.0,8.2,6.6,8.5,10.3,13.3,10.8,10.2,6.7,0.1,6.0,7.1,7.3,7.4,7.1,7.0,6.9,7.0,7.5,7.1,-3.1,3.1,5.1,5.0,6.0,5.3,3.0];
 const INF=[-0.8,7.2,8.0,14.8,4.0,-0.8,-0.6,0.2,0.9,4.3,6.6,5.8,8.7,24.1,-1.2,4.0,5.5,2.9,2.9,3.9,1.2,3.0,2.9,2.5,1.9,2.9,2.9,5.3,2.1,0.8,2.5,5.6];
@@ -391,199 +350,187 @@ const EV={
 2026:"Según el FMI, el crecimiento baja a 3,0 % y la inflación sube a 5,6 % por el petróleo, menos turismo y menos remesas (proyección)."};
 const fmt=x=>x.toFixed(1).replace('.',',');
 
-/* ===================== Personajes ficticios ===================== */
+
+/* ---------- personajes ---------- */
 const P=[
- {id:'sokha',name:'Sokha',role:'costurera en una fábrica de ropa',place:'Phnom Penh',color:'#C8102E',voice:'airy',
-  bio:'Mujer de unos 30 años, vino del campo a la ciudad; cose ropa y zapatos que se exportan; manda dinero a su familia en Kampong Cham; comparte cuarto con otras trabajadoras.'},
- {id:'dara',name:'Dara',role:'campesino arrocero',place:'Battambang',color:'#2E8540',voice:'rounded',
-  bio:'Hombre de unos 45 años, cultiva arroz en una parcela familiar; su hermano menor ha trabajado a temporadas en Tailandia; depende de las lluvias y del precio del arroz y del fertilizante.'},
- {id:'vuthy',name:'Vuthy',role:'conductor de tuk-tuk',place:'Siem Reap',color:'#B5651D',voice:'buttery',
-  bio:'Hombre de unos 35 años, lleva turistas a los templos de Angkor; cobra en dólares; su ingreso depende de cuántos turistas llegan y del precio de la gasolina.'},
- {id:'chanthy',name:'Chanthy',role:'estudiante de economía',place:'Phnom Penh',color:'#2E5AAC',voice:'glassy',
-  bio:'Mujer de unos 22 años, estudia economía en la universidad, trabaja medio tiempo en un café; sigue las noticias y explica la macroeconomía con palabras sencillas.'}];
+ {id:'sokha',name:'Sokha',role:'costurera',place:'Phnom Penh',voice:'airy',pitch:1.15,
+  bio:'Mujer de unos 30 años; vino de Kampong Cham a trabajar en una fábrica de ropa; manda dinero a su familia; comparte cuarto con otras trabajadoras.'},
+ {id:'dara',name:'Dara',role:'arrocero',place:'Battambang',voice:'rounded',pitch:.85,
+  bio:'Hombre de unos 45 años; cultiva arroz en la parcela familiar; su hermano menor ha trabajado a temporadas en Tailandia; depende de la lluvia y del precio del arroz y del fertilizante.'},
+ {id:'vuthy',name:'Vuthy',role:'conductor de tuk-tuk',place:'Siem Reap',voice:'buttery',pitch:.95,
+  bio:'Hombre de unos 35 años; lleva turistas a los templos de Angkor; cobra en dólares; su ingreso depende de los turistas y del precio de la gasolina.'},
+ {id:'chanthy',name:'Chanthy',role:'estudiante de economía',place:'Phnom Penh',voice:'glassy',pitch:1.2,
+  bio:'Mujer de unos 22 años; estudia economía en la universidad y trabaja medio tiempo en un café; explica la macroeconomía con palabras sencillas.'}];
 
-/* ===================== Estado y utilidades ===================== */
-const $=s=>document.querySelector(s);
-const st={year:2025,p:P[0],hist:[],busy:false,voice:false,ctrl:null};
-let SAMPLE=null,TTS=null,DICT=null;
-try{const s=localStorage.getItem('khm_year');if(s&&+s>=1995&&+s<=2026)st.year=+s}catch(e){}
-
-/* sonido simple estilo juego (WebAudio) */
-const FX=(()=>{let ctx=null,on=true;function t(f,d,type='square',g=.12){if(!on)return;try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();const o=ctx.createOscillator(),v=ctx.createGain();o.type=type;o.frequency.value=f;v.gain.setValueAtTime(g,ctx.currentTime);v.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+d);o.connect(v);v.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d)}catch(e){}}
- return{start(){[261,329,392,523].forEach((f,i)=>setTimeout(()=>t(f,.15,'triangle',.18),i*80))},click(){t(600,.05,'square',.06)},msg(){t(880,.06,'sine',.08)},toggle(){on=!on;return on}}})();
-
-/* ===================== Navegación ===================== */
-function show(view){
-  for(const v of ['intro','chat','fuentes'])$('#'+v).hidden=(v!==view);
-  if(view==='chat'){renderAll()}
-  window.scrollTo(0,0);
-}
-function route(){const h=location.hash.replace('#','');if(h==='fuentes')show('fuentes');else if(h==='conversa')show('chat');else{show('intro')}}
-window.addEventListener('hashchange',route);
-document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',()=>{stopAll();location.hash='';const i=$('#intro');i.classList.add('open','menu');show('intro')}));
-$('#tap').addEventListener('click',openIntro);
-$('#intro').addEventListener('click',e=>{if(!$('#intro').classList.contains('menu')&&!e.target.closest('.audio-tg'))openIntro()});
-function openIntro(){const i=$('#intro');if(i.classList.contains('menu'))return;FX.start();i.classList.add('open','menu')}
-setTimeout(()=>$('#intro').classList.add('open'),500);
-$('#snd').addEventListener('click',e=>{e.stopPropagation();e.currentTarget.textContent=FX.toggle()?'🔊':'🔇'});
-$('#go-fuentes').addEventListener('click',e=>{e.stopPropagation();FX.click();location.hash='fuentes'});
-$('#go-chat').addEventListener('click',e=>{e.stopPropagation();FX.click();location.hash='conversa'});
-
-/* ===================== Chat: render ===================== */
-function setYear(y,silent){y=Math.max(1995,Math.min(2026,y));if(y===st.year&&silent!==false&&st.hist.length)return;st.year=y;try{localStorage.setItem('khm_year',y)}catch(e){};stopAll();st.hist=[];renderAll()}
-$('#yRange').addEventListener('input',e=>{st.year=+e.target.value;renderYear()});
-$('#yRange').addEventListener('change',e=>setYear(+e.target.value,false));
-$('#yPrev').addEventListener('click',()=>setYear(st.year-1,false));
-$('#yNext').addEventListener('click',()=>setYear(st.year+1,false));
-function renderYear(){
-  const y=st.year,i=y-Y0;$('#yBig').textContent=y;$('#yRange').value=y;
-  $('#ctx').innerHTML=`<span class="k">PIB ${fmt(GDP[i])} %${y===2026?' (proy.)':''}</span><span class="k">Inflación ${fmt(INF[i])} %</span>${WAGE[y]?`<span class="k">Salario mínimo textil US$${WAGE[y]}</span>`:''}<span class="ev"></span>`;
-  const ev=$('#ctx .ev');ev.textContent=EV[y];ev.title='Toca para ver completo';ev.addEventListener('click',()=>ev.classList.toggle('open'));
-}
-function renderPeople(){
-  const box=$('#people');box.innerHTML='';
-  for(const p of P){const b=document.createElement('button');b.className='pc';b.setAttribute('aria-pressed',p===st.p);
-    b.innerHTML=`<span class="av pa" style="background:${p.color}22">${ART.portrait(p.id,'c'+p.id)}</span><span>${p.name}<small>${p.role}</small></span>`;
-    b.addEventListener('click',()=>{if(st.p===p)return;stopAll();st.p=p;st.hist=[];renderAll()});box.appendChild(b)}
-  const p=st.p;$('#stage').innerHTML=ART.scene(p.id)+`<div class="ptw">${ART.portrait(p.id,'s'+p.id)}</div><div class="live"><i></i><span class="lt">En línea</span><span class="wave"><s></s><s></s><s></s><s></s></span></div><div class="tagn"><b class="wn"></b><span class="wr"></span></div><div class="yrtag">${st.year}</div>`;
-  $('#stage .wn').textContent=p.name;$('#stage .wr').textContent=`${p.role[0].toUpperCase()+p.role.slice(1)} · ${p.place}`;$('#stage').setAttribute('aria-label',`${p.name}, ${p.role}, ${p.place}, año ${st.year}`);
-}
-const CHIPS=['¿Cómo te va este año?','¿Cómo están los precios?','¿Hay trabajo? ¿Cuánto ganas?','¿Qué pasa con China y EE. UU.?','¿Qué esperas del futuro?'];
-function renderChips(){const c=$('#chips');c.innerHTML='';for(const q of CHIPS){const b=document.createElement('button');b.type='button';b.textContent=q;b.addEventListener('click',()=>ask(q));c.appendChild(b)}}
-function renderAll(){renderYear();renderPeople();renderChips();renderMsgs();renderMode()}
-function renderMode(){const m=$('#mode');m.textContent=SAMPLE?'Personajes ficticios creados con IA con datos reales; no son personas reales.':'Modo guiado · personajes ficticios con datos reales; no son personas reales.';
-  if(!SAMPLE&&!(window.claude&&window.claude.use)){const a=document.createElement('a');a.href='https://claude.ai/artifact/99jGDZRnd8S3LMfHp6a1qv#conversa';a.target='_blank';a.rel='noopener';a.textContent=' Versión con chat libre (requiere Claude) ›';a.style.color='var(--blue)';a.style.fontWeight='700';m.appendChild(a)}}
-function greeting(){const p=st.p,y=st.year;return `¡Hola! Soy ${p.name}, ${p.role} en ${p.place}. Estamos en ${y}. ${EV[y].split(';')[0].replace(/\.$/,'')}. ¿Qué quieres saber de mi vida aquí?`}
-function renderMsgs(){
-  const m=$('#msgs');m.innerHTML='';
-  addSys(`Año ${st.year} · conversación con un personaje ficticio`);
-  if(!st.hist.length)st.hist.push({role:'assistant',content:greeting()});
-  for(const h of st.hist)bubble(h.role==='user'?'me':'them',h.content);
-}
-function addSys(t){const d=document.createElement('div');d.className='sys';d.textContent=t;$('#msgs').appendChild(d)}
-function bubble(who,text){
-  const d=document.createElement('div');d.className='m '+who;const body=document.createElement('div');body.textContent=text;d.appendChild(body);
-  if(who==='them'&&(TTS||window.speechSynthesis)){const meta=document.createElement('div');meta.className='meta';const b=document.createElement('button');b.className='say';b.type='button';b.textContent='🔊 Escuchar';b.addEventListener('click',()=>speak(body.textContent));meta.appendChild(b);d.appendChild(meta)}
-  $('#msgs').appendChild(d);$('#msgs').scrollTop=1e9;return body;
-}
-
-let talkSrc={type:false,voice:false};
-function talk(src,on){talkSrc[src]=on;const s=$('#stage');if(!s)return;const any=talkSrc.type||talkSrc.voice;s.classList.toggle('talking',any);const l=s.querySelector('.lt');if(l)l.textContent=talkSrc.voice?'Hablando':talkSrc.type?'Escribiendo…':'En línea'}
-/* ===================== Respuesta: IA (sample) o modo guiado ===================== */
-function prompt(){
-  const p=st.p,y=st.year,i=y-Y0;
-  const data=`Crecimiento del PIB real: ${fmt(GDP[i])} %${y===2026?' (proyección del FMI)':''}; inflación: ${fmt(INF[i])} %${WAGE[y]?`; salario mínimo textil: US$${WAGE[y]} al mes`:''}.`;
-  const inst=`Interpreta a ${p.name}, ${p.role} en ${p.place}, Camboya. ${p.bio}
-Es el año ${y}. Contexto de ${y}: ${EV[y]} Datos de ${y}: ${data}
-Reglas:
-- Responde siempre en español sencillo y cálido, en primera persona, como si tus palabras fueran traducidas del jemer. Entre 2 y 4 frases. Sin listas ni títulos.
-- Habla desde tu vida diaria (trabajo, precios, familia, ciudad o campo) y conecta con la economía cuando venga al caso.
-- Solo sabes lo ocurrido hasta ${y}; si te preguntan por años posteriores, di que no puedes saber el futuro.
-- Usa solo las cifras dadas arriba; si no conoces un dato, dilo con naturalidad. No inventes estadísticas.
-- No tomes partido político de forma tajante; cuenta cómo lo vives tú.
-- Si te preguntan si eres real o una IA, di con claridad que eres un personaje ficticio de una simulación educativa basada en datos reales.
-- Si el mensaje no tiene que ver con Camboya o tu vida, redirige con amabilidad.`;
-  const conv=st.hist.slice(-12);
-  const msgs=[{role:'user',content:inst+'\n\n(Empieza la conversación saludando.)'},...conv];
-  if(msgs[1]&&msgs[1].role==='user')msgs.splice(1,0,{role:'assistant',content:greeting()});
-  return msgs;
-}
-async function ask(q){
-  q=(q||'').trim();if(!q||st.busy)return;
-  FX.click();st.hist.push({role:'user',content:q});bubble('me',q);$('#txt').value='';fit();
-  st.busy=true;$('#send').disabled=true;
-  talk('type',true);
-  const holder=document.createElement('div');holder.className='m them';holder.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';$('#msgs').appendChild(holder);$('#msgs').scrollTop=1e9;
-  let ans='';
-  if(SAMPLE){
-    try{
-      st.ctrl=new AbortController();let body=null;
-      const r=await SAMPLE(prompt(),{modelTier:'quick',cache:false,signal:st.ctrl.signal,onText:({text})=>{if(!body){holder.remove();body=bubble('them','')}body.textContent=text;$('#msgs').scrollTop=1e9}});
-      ans=(r&&r.text)||'';if(!body){holder.remove();body=bubble('them',ans)}else body.textContent=ans;
-    }catch(e){
-      if(e&&e.name==='AbortError'){holder.remove();talk('type',false);st.busy=false;$('#send').disabled=false;return}
-      if(e&&(e.code==='not_granted'||e.code==='unavailable')){SAMPLE=null;renderMode()}
-      ans=offline(q);holder.remove();bubble('them',ans);
-      if(e&&e.code==='rate_limited')addSys('Demasiadas preguntas seguidas: respondo en modo guiado un momento.');
-    }
-  }else{await new Promise(r=>setTimeout(r,700));ans=offline(q);holder.remove();bubble('them',ans)}
-  talk('type',false);
-  st.hist.push({role:'assistant',content:ans});FX.msg();st.busy=false;$('#send').disabled=false;
-  if(st.voice)speak(ans);
-}
-
-/* Modo guiado (sin IA): respuestas armadas con los datos del año */
-function topic(q){q=q.toLowerCase();
-  if(/precio|inflaci|caro|cuesta|arroz cuesta|gasolina/.test(q))return'precios';
-  if(/trabajo|empleo|ganas|salario|sueldo|dinero|desemple/.test(q))return'trabajo';
-  if(/china|ee\.? ?uu|estados unidos|eeuu|arancel|export|comercio|tailand|europa/.test(q))return'mundo';
-  if(/futuro|esperas|mañana|sueño|planes/.test(q))return'futuro';
-  if(/real|ia|inteligencia|robot|eres/.test(q))return'real';
-  return'vida'}
+/* ---------- diálogos (modo sin IA) ---------- */
+const era=y=>y<=1998?1:y<=2004?2:y<=2008?3:y<=2012?4:y<=2019?5:y<=2021?6:y<=2024?7:8;
+const VIDA={
+ sokha:{1:'Llegué hace poco a Phnom Penh desde Kampong Cham. Las fábricas de ropa apenas están abriendo y todo es nuevo para mí.',
+  2:'En la fábrica no paramos: casi todo lo que cosemos va a Estados Unidos. Ahora vienen inspectores a revisar cómo nos tratan.',
+  3:y=>y===2008?'Este año todo está carísimo: el arroz subió muchísimo y el sueldo ya no alcanza.':'Se acabaron las cuotas y ahora competimos con China, pero los pedidos siguen llegando.',
+  4:y=>y===2009?'Hubo despidos: en Estados Unidos compran menos ropa por su crisis.':'Volvieron los pedidos y otra vez hacemos horas extra.',
+  5:'Hicimos huelgas por el salario y lo logramos subir. Ahora la fábrica tiene más pedidos que nunca.',
+  6:'Con la pandemia la fábrica cerró varias semanas y muchas quedamos suspendidas con medio sueldo.',
+  7:y=>y===2022?'Ya trabajamos normal, pero este año subió todo: la gasolina, el aceite, la comida.':'El trabajo está estable y hay pedidos, gracias a Dios.',
+  8:'Nos asustó mucho el arancel de Estados Unidos; cuando lo bajaron a 19 % respiramos. Los pedidos siguen.'},
+ dara:{1:'Después de tantos años de guerra por fin puedo sembrar tranquilo, aunque todavía hay minas en algunos campos.',
+  2:'Vivimos de lo que da el arroz. Mi hermano menor se fue a la capital a trabajar en una fábrica.',
+  3:y=>y===2008?'El arroz se vende más caro este año, pero el fertilizante y el diésel subieron todavía más.':'Hay caminos nuevos y llegan más compradores para la cosecha.',
+  4:y=>y===2011?'Las inundaciones de este año se llevaron parte de mi cosecha.':'El arroz se paga poco y muchos vecinos se van a trabajar a Tailandia.',
+  5:'Ahora vendemos a comerciantes que exportan, y algunos vecinos ya tienen tractor.',
+  6:'Con la pandemia mi hermano volvió de Tailandia sin trabajo; somos más bocas en la casa.',
+  7:y=>y===2022?'El fertilizante subió muchísimo este año y la lluvia llegó tarde.':'La cosecha va bien, pero los jóvenes ya no quieren trabajar en el campo.',
+  8:'Casi un millón de trabajadores volvieron de Tailandia por el conflicto en la frontera; mi hermano también regresó.'},
+ vuthy:{1:'Llevo turistas en mi moto a los templos, pero vienen pocos: todavía hay miedo por la inseguridad.',
+  2:'Cada año llegan más turistas a Angkor. Ya cambié la moto por un tuk-tuk.',
+  3:y=>y===2008?'La gasolina está carísima y los turistas regatean más que nunca.':'Hay hoteles nuevos por todas partes y vuelos directos desde otros países de Asia.',
+  4:y=>y===2009?'Este año llegaron menos turistas por la crisis mundial.':'Cada vez vienen más turistas de China y de Corea.',
+  5:'Ahora consigo clientes con una aplicación en el celular; hay mucha competencia.',
+  6:'Angkor está vacío. Sin turistas vivo de lo que ahorré.',
+  7:'Los turistas regresan poco a poco, pero todavía no son tantos como antes de la pandemia.',
+  8:'Por la tensión con Tailandia vienen menos turistas por tierra; paso horas esperando clientes.'},
+ chanthy:{1:'Muy pocos pueden ir a la universidad: perdimos a muchos profesores en la época de los Jemeres Rojos.',
+  2:'Ahora que estamos en la ASEAN, todos quieren aprender inglés y computación.',
+  3:y=>y===2008?'En clase estudiamos la inflación de este año, 24 %: subieron el petróleo y la comida.':'Estudiamos el fin de las cuotas textiles: Camboya tiene que competir de frente con China.',
+  4:'Analizamos cómo la crisis de Estados Unidos golpeó nuestras exportaciones de ropa.',
+  5:'En clase discutimos si dependemos demasiado de la ropa y de la inversión china.',
+  6:'Las clases son por internet y la conexión en mi casa es mala; estudio desde el celular.',
+  7:'Ya tenemos tratado de libre comercio con China y el RCEP; el reto es no depender solo de la ropa.',
+  8:'El arancel de Estados Unidos mostró lo frágiles que somos: allí va casi la mitad de lo que exportamos.'}};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function topic(q){q=q.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  if(/^(hola|buen|que tal|saludos|hey)/.test(q))return'hola';
+  if(/real|eres (una )?ia|inteligencia|robot|eres humano|existes/.test(q))return'real';
+  if(/precio|inflacion|caro|cuesta|costo|gasolina|comida/.test(q))return'precios';
+  if(/gana|salario|sueldo|pagan|trabaj|empleo|desemple|dinero ganas/.test(q))return'trabajo';
+  if(/china|ee\.? ?uu|estados unidos|eeuu|usa|arancel|export|import|comercio|tailand|europa|depend/.test(q))return'mundo';
+  if(/dolar|riel|moneda|banco/.test(q))return'dinero';
+  if(/familia|hijo|hija|herman|mama|papa|casa|esposa|esposo/.test(q))return'familia';
+  if(/futuro|esperas|sueno|planes|manana|despues/.test(q))return'futuro';
+  if(/turis|angkor|templo/.test(q))return'turismo';
+  if(/como (te|estas|va)|tu vida|que haces|cuentame|este ano/.test(q))return'vida';
+  return'otro'}
 function offline(q){
-  const p=st.p,y=st.year,i=y-Y0,g=GDP[i],inf=INF[i],w=WAGE[y],t=topic(q);
-  const mood=g<1?'Este año está muy difícil':g<4?'Este año las cosas van más lentas':g<7?'Este año va bastante bien':'Este año hay mucho movimiento';
-  const pr=inf>10?`Todo sube muy rápido: la inflación es de ${fmt(inf)} %, y el arroz y la gasolina pesan mucho`:inf>4?`Se nota en el mercado: los precios suben ${fmt(inf)} %, sobre todo comida y combustible`:inf<0?`Los precios hasta bajaron un poco (${fmt(inf)} %)`:`Los precios están bastante estables (${fmt(inf)} %)`;
-  const L={
-   sokha:{vida:`${mood}: la economía crece ${fmt(g)} %. En la fábrica, ${g<1?'hay menos pedidos y algunas compañeras perdieron horas extra':'hay pedidos y hacemos horas extra'}.`,
-     trabajo:w?`Gano el salario mínimo textil, US$${w} al mes, más algo de horas extra. Mando una parte a mi familia en el campo.`:`En ${y} el salario de la fábrica es bajo, apenas alcanza para el cuarto, la comida y mandar algo a mi familia.`,
-     precios:`${pr}. Con mi salario tengo que cuidar cada riel.`},
-   dara:{vida:`${mood} (la economía crece ${fmt(g)} %), pero en el campo dependemos de la lluvia y del precio del arroz.`,
-     trabajo:`En el campo no hay salario fijo: vivo de la cosecha. ${y>=2000?'Muchos jóvenes se van a las fábricas o a Tailandia a trabajar.':'Casi todos aquí vivimos de la agricultura.'}`,
-     precios:`${pr}. El fertilizante y el diésel para la bomba de agua son lo que más me preocupa.`},
-   vuthy:{vida:`${mood}: la economía crece ${fmt(g)} %. ${y===2020||y===2021?'Casi no llegan turistas a Angkor y paso el día esperando.':'Vivo de los turistas que vienen a ver los templos de Angkor.'}`,
-     trabajo:`Cobro en dólares por cada viaje. ${y===2020||y===2021?'Con la pandemia, mis ingresos cayeron muchísimo.':y>=2025?'Hay menos turistas que vienen por tierra desde Tailandia por la tensión en la frontera.':'En temporada alta me va bien; en lluvias, menos.'}`,
-     precios:`${pr}. La gasolina es lo que más me afecta.`},
-   chanthy:{vida:`${mood}: el PIB crece ${fmt(g)} % y la inflación es de ${fmt(inf)} %. En la universidad hablamos mucho de cómo sostener ese crecimiento.`,
-     trabajo:`${w?`El salario mínimo textil es US$${w}. `:''}Muchos empleos son informales; lo difícil es encontrar trabajo de calidad para los jóvenes.`,
-     precios:`${pr}. Aquí casi todo se paga en dólares, por eso el banco central mantiene estable el riel.`}};
-  const mundo=y<2005?'EE. UU. compra casi toda nuestra ropa gracias al acuerdo textil; China todavía no es tan importante para nosotros.':
-    y<2013?'EE. UU. y Europa compran nuestra ropa, y cada vez llegan más telas y empresas de China.':
-    y<2020?'China es nuestro mayor inversionista, sobre todo en Sihanoukville, mientras EE. UU. y Europa compran la ropa.':
-    y<2025?'Ahora tenemos tratado de libre comercio con China y el RCEP; EE. UU. sigue siendo quien más nos compra.':
-    'EE. UU. compra cerca del 43 % de lo que exportamos y puso un arancel de 19 %; de China vienen las telas y las máquinas. Dependemos de los dos.';
-  const fut=y>=2026?'El FMI dice que creceremos menos este año, 3 %. Espero que lleguen más turistas y que suban los salarios.':
-    g<1?'Ojalá el próximo año vuelvan los pedidos y el trabajo.':'Espero que mis hijos estudien y no dependan solo de la ropa o del arroz.';
-  const real='Soy un personaje ficticio de una simulación educativa. Mis respuestas usan datos reales de Camboya para ese año.';
-  if(t==='mundo')return mundo; if(t==='futuro')return fut; if(t==='real')return real;
-  return L[p.id][t]||L[p.id].vida;
+  const p=st.p,y=st.year,i=y-Y0,g=GDP[i],inf=INF[i],w=WAGE[y],e=era(y),t=topic(q);
+  const v=VIDA[p.id][e],vida=typeof v==='function'?v(y):v;
+  const pr=inf>10?`Todo sube rapidísimo: la inflación es de ${fmt(inf)} %.`:inf>4?`Se nota en el mercado: los precios suben ${fmt(inf)} %.`:inf<0?`Los precios hasta bajaron un poquito (${fmt(inf)} %).`:`Los precios están tranquilos, suben ${fmt(inf)} %.`;
+  const mood=g<1?'La economía casi no crece este año':g<4?`La economía crece despacio, ${fmt(g)} %`:g<8?`La economía crece bien, ${fmt(g)} %`:`La economía está a mil, crece ${fmt(g)} %`;
+  const mundo=y<2005?'Estados Unidos compra casi toda nuestra ropa gracias al acuerdo textil.':y<2013?'Estados Unidos y Europa compran nuestra ropa, y de China llegan cada vez más telas y empresas.':y<2020?'China es nuestro mayor inversionista; Estados Unidos y Europa compran la ropa.':y<2025?'Ya tenemos tratado de libre comercio con China; Estados Unidos sigue siendo quien más nos compra.':'Estados Unidos compra cerca del 43 % de lo que exportamos y nos puso un arancel de 19 %; de China vienen las telas y las máquinas.';
+  const A={
+   hola:()=>pick([`¡Hola! Aquí en ${p.place} todo bien, ¿y tú?`,`¡Hola, qué gusto! ¿Qué quieres saber de ${y}?`]),
+   real:()=>'Soy un personaje inventado para un póster de la universidad, pero lo que te cuento sale de datos reales de Camboya.',
+   vida:()=>vida,
+   precios:()=>pr+' '+({sokha:'Lo que más me pesa es el arriendo del cuarto y la comida.',dara:'A mí lo que me preocupa es el fertilizante y el diésel de la bomba de agua.',vuthy:'Para mí lo peor es la gasolina.',chanthy:'Como casi todo se paga en dólares, la inflación depende mucho del petróleo que importamos.'}[p.id]),
+   trabajo:()=>({sokha:w?`Gano el mínimo de la fábrica, US$${w} al mes, más las horas extra. Una parte se la mando a mi mamá.`:'El sueldo de la fábrica es bajito; alcanza para el cuarto, la comida y mandar algo a mi familia.',
+     dara:'En el campo no hay sueldo: vivo de la cosecha, y si la lluvia falla, no hay plata.',
+     vuthy:y===2020||y===2021?'Con la pandemia casi no gano nada.':'Cobro en dólares por viaje; en temporada alta me va bien, en lluvias muy poco.',
+     chanthy:`${w?`El mínimo en las fábricas es US$${w}. `:''}Lo difícil para los jóvenes es encontrar trabajo formal y bien pagado.`}[p.id]),
+   mundo:()=>mundo+({sokha:' Por eso en la fábrica estamos pendientes de todo lo que pasa allá.',dara:' A mí me toca menos, aunque el fertilizante también viene de afuera.',vuthy:y>=2010?' Y muchos de mis clientes ahora son turistas chinos.':' Yo lo veo en los turistas: cada año vienen de más países.',chanthy:' Esa es justo la pregunta de mi clase: ¿se puede depender de los dos a la vez?'}[p.id]),
+   dinero:()=>p.id==='chanthy'&&y>=2024?'Más del 80 % del dinero está en dólares; por eso el Banco Nacional cuida que el riel no se mueva.':'Aquí usamos dólares para casi todo y rieles para el cambio pequeño.',
+   familia:()=>({sokha:'Mis papás siguen en el campo y yo les mando dinero cada mes.',dara:'Tengo tres hijos; quiero que estudien y no dependan solo del arroz.',vuthy:'Mi esposa vende comida en el mercado y entre los dos sacamos adelante a la familia.',chanthy:'Soy la primera de mi familia en ir a la universidad; mis papás están muy orgullosos.'}[p.id]),
+   futuro:()=>(y>=2026?'Dicen que este año creceremos menos, 3 %. ':g<1?'Este año está duro. ':'')+({sokha:'Quiero ahorrar para abrir mi propio taller de costura en mi pueblo.',dara:'Ojalá pueda comprar una bomba de agua y sacar dos cosechas al año.',vuthy:'Sueño con tener mi propia agencia de tours en Siem Reap.',chanthy:'Quiero trabajar en el Banco Nacional o en una empresa que exporte algo más que ropa.'}[p.id]),
+   turismo:()=>p.id==='vuthy'?vida:(y===2020||y===2021?'Casi no hay turistas por la pandemia.':'Cada vez vienen más turistas a ver Angkor; es un orgullo para nosotros.'),
+   otro:()=>pick(['Uy, de eso no sé mucho. Pregúntame por mi trabajo, los precios o mi familia.',`Hmm, mejor te cuento cómo vivimos en ${y}: ${vida.charAt(0).toLowerCase()+vida.slice(1)}`])};
+  return (t==='otro'||t==='hola'?'':'')+A[t]();
 }
 
-/* ===================== Voz: salida (tts) y entrada (dictado) ===================== */
-function speak(text){
-  if(!text)return;
-  if(TTS){TTS.speak(text.slice(0,1900),{voice:st.p.voice,language:'es'}).catch(e=>{if(e&&(e.code==='not_granted'||e.code==='unavailable')){TTS=null;$('#voiceTg').hidden=!window.speechSynthesis}});return}
-  try{const u=new SpeechSynthesisUtterance(text);u.lang='es-ES';u.onstart=()=>talk('voice',true);u.onend=u.onerror=()=>talk('voice',false);speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}
+/* ---------- estado ---------- */
+const $=s=>document.querySelector(s);
+const st={year:2025,p:P[0],hist:[],req:0,ctrl:null,voice:true};
+let SAMPLE=null,TTS=null,DICT=null;
+try{const s=+localStorage.getItem('khm_year');if(s>=1995&&s<=2026)st.year=s;const v=localStorage.getItem('khm_voice');if(v==='0')st.voice=false}catch(e){}
+
+/* ---------- navegación ---------- */
+function show(v){for(const x of ['intro','chat','fuentes'])$('#'+x).hidden=x!==v;if(v==='chat')renderAll();window.scrollTo(0,0)}
+function route(){const h=location.hash.slice(1);show(h==='fuentes'?'fuentes':h==='conversa'?'chat':'intro')}
+addEventListener('hashchange',route);
+function openMenu(){$('#intro').classList.add('on')}
+$('#tap').onclick=openMenu;$('#intro').addEventListener('click',e=>{if(!e.target.closest('.mb'))openMenu()});
+$('#go-chat').onclick=()=>{unlock();location.hash='conversa'};
+$('#go-fuentes').onclick=()=>location.hash='fuentes';
+document.querySelectorAll('[data-home]').forEach(b=>b.onclick=()=>{halt();location.hash='';$('#intro').classList.add('on')});
+
+/* ---------- voz: frases cortas en cola (empieza enseguida y no se corta) ---------- */
+let VO=null;
+function pickVoice(){try{const vs=speechSynthesis.getVoices().filter(v=>/^es/i.test(v.lang));VO=vs.find(v=>/es-(US|MX|419|CO)/i.test(v.lang)&&/google|natural|neural|paulina|sabina/i.test(v.name))||vs.find(v=>/es-(US|MX|419|CO)/i.test(v.lang))||vs.find(v=>/google|natural/i.test(v.name))||vs[0]||null}catch(e){}}
+if(window.speechSynthesis){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+let ttsLive=false,webCount=0;
+function unlock(){try{if(window.speechSynthesis&&!TTS){const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}}catch(e){}}
+function sayStart(){ttsLive=false}
+function sayLine(s){
+  s=s.trim();if(!s||!st.voice)return;
+  if(TTS){const line=[{text:s,voice:st.p.voice,language:'es'}];const pr=ttsLive?TTS.add(line):TTS.speak(line);ttsLive=true;pr.catch(e=>{if(e&&(e.code==='not_granted'||e.code==='unavailable'))TTS=null});return}
+  if(!window.speechSynthesis)return;
+  try{const u=new SpeechSynthesisUtterance(s);u.lang=VO?VO.lang:'es-ES';if(VO)u.voice=VO;u.rate=1.07;u.pitch=st.p.pitch;
+    u.onstart=()=>talk('voice',true);u.onend=u.onerror=()=>{if(--webCount<=0){webCount=0;talk('voice',false)}};webCount++;speechSynthesis.speak(u)}catch(e){}
 }
-function stopAll(){talk('voice',false);talk('type',false);try{st.ctrl&&st.ctrl.abort()}catch(e){};try{TTS&&TTS.stop()}catch(e){};try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){};try{DICT&&DICT.stop()}catch(e){}}
-$('#voiceTg').addEventListener('click',e=>{st.voice=!st.voice;e.currentTarget.setAttribute('aria-pressed',st.voice);if(!st.voice)stopAll()});
-let dictBase='',dictOn=false;
-$('#mic').addEventListener('click',()=>{
-  if(!DICT)return;
-  if(dictOn){DICT.stop().catch(()=>{});return}
-  dictBase=$('#txt').value?$('#txt').value+' ':'';
-  DICT.start().catch(e=>{if(e&&e.code==='not_granted'){$('#mic').hidden=true}});
-});
+function shush(){ttsLive=false;webCount=0;try{TTS&&TTS.stop()}catch(e){};try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){};talk('voice',false)}
+function halt(){st.req++;try{st.ctrl&&st.ctrl.abort()}catch(e){};shush();talk('type',false);const h=$('#msgs .holder');if(h)h.remove()}
+const splitS=t=>(t.match(/[^.!?¡¿…]*[.!?…]+["»”)]*\s*|[^.!?…]+$/g)||[]).map(s=>s.trim()).filter(Boolean);
+$('#vol').onclick=e=>{st.voice=!st.voice;e.currentTarget.textContent=st.voice?'🔊':'🔇';e.currentTarget.setAttribute('aria-pressed',st.voice);e.currentTarget.setAttribute('aria-label',st.voice?'Voz activada':'Voz desactivada');if(!st.voice)shush();try{localStorage.setItem('khm_voice',st.voice?'1':'0')}catch(_){}};
 
-/* ===================== Composer ===================== */
-const txt=$('#txt');function fit(){txt.style.height='auto';txt.style.height=Math.min(120,txt.scrollHeight)+'px'}
-txt.addEventListener('input',fit);
-txt.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask(txt.value)}});
-$('#compose').addEventListener('submit',e=>{e.preventDefault();ask(txt.value)});
+/* ---------- render ---------- */
+const talkS={type:false,voice:false};
+function talk(k,on){talkS[k]=on;const s=$('#stage');if(!s)return;const a=talkS.type||talkS.voice;s.classList.toggle('talking',a);const l=$('#who .st');if(l)l.textContent=talkS.voice?'hablando':talkS.type?'escribiendo…':'en línea'}
+function setYear(y){y=Math.max(1995,Math.min(2026,y));if(y===st.year&&st.hist.length)return renderYear();halt();st.year=y;st.hist=[];try{localStorage.setItem('khm_year',y)}catch(e){};renderAll()}
+$('#yr').oninput=e=>{$('#yv').textContent=e.target.value};
+$('#yr').onchange=e=>setYear(+e.target.value);
+$('#yPrev').onclick=()=>setYear(st.year-1);$('#yNext').onclick=()=>setYear(st.year+1);
+function renderYear(){const y=st.year,i=y-Y0;$('#yv').textContent=y;$('#yr').value=y;$('#ydata').textContent=`PIB ${fmt(GDP[i])} %${y===2026?' (proy.)':''} · Inflación ${fmt(INF[i])} %${WAGE[y]?` · Salario mínimo US$${WAGE[y]}`:''}`}
+function renderCast(){const c=$('#cast');c.innerHTML='';for(const p of P){const b=document.createElement('button');b.className='ca';b.setAttribute('aria-pressed',p===st.p);b.innerHTML=`<span class="ring">${ART.portrait(p.id,'c'+p.id)}</span>${p.name}`;b.onclick=()=>{if(p===st.p)return;halt();st.p=p;st.hist=[];renderAll()};c.appendChild(b)}}
+function renderStage(){const p=st.p;$('#stage').innerHTML=ART.scene(p.id)+`<div class="ptw">${ART.portrait(p.id,'s'+p.id)}</div>`;$('#stage').setAttribute('aria-label',`${p.name}, ${p.role} en ${p.place}`);
+  $('#who').innerHTML=`<b></b><span class="r"></span><span class="dot"></span><span class="wave"><s></s><s></s><s></s></span><span class="st">en línea</span>`;$('#who b').textContent=p.name;$('#who .r').textContent=`· ${p.role}, ${p.place} ·`}
+const CH=['¿Cómo te va?','¿Cómo están los precios?','¿Cuánto ganas?','¿China o EE. UU.?','¿Y tu familia?','¿Qué esperas del futuro?'];
+function renderChips(){const c=$('#chips');c.innerHTML='';for(const q of CH){const b=document.createElement('button');b.type='button';b.textContent=q;b.onclick=()=>ask(q);c.appendChild(b)}}
+function greet(){const p=st.p,y=st.year,v=VIDA[p.id][era(y)];return `¡Hola! Soy ${p.name}, ${p.role} en ${p.place}. ${typeof v==='function'?v(y):v}`}
+function renderMsgs(){const m=$('#msgs');m.innerHTML='';const n=document.createElement('div');n.className='ynote';n.innerHTML=`<b>${st.year}.</b> `;n.append(EV[st.year]);m.appendChild(n);
+  if(!st.hist.length)st.hist.push({role:'assistant',content:greet()});for(const h of st.hist)bubble(h.role==='user'?'me':'them',h.content)}
+function renderFoot(){const f=$('#foot');f.textContent='Personajes ficticios con datos reales.';
+  if(!SAMPLE&&!(window.claude&&window.claude.use)){const a=document.createElement('a');a.href='https://claude.ai/artifact/99jGDZRnd8S3LMfHp6a1qv#conversa';a.target='_blank';a.rel='noopener';a.textContent=' Chat libre con IA ›';f.append(a)}}
+function renderAll(){renderYear();renderCast();renderStage();renderChips();renderMsgs();renderFoot();talk('type',false)}
+function bubble(who,text){const d=document.createElement('div');d.className='m '+who;const b=document.createElement('div');b.textContent=text;d.appendChild(b);
+  if(who==='them'&&(TTS||window.speechSynthesis)){const s=document.createElement('button');s.className='say';s.type='button';s.textContent='▶ escuchar';s.onclick=()=>{shush();sayStart();const was=st.voice;st.voice=true;splitS(b.textContent).forEach(sayLine);st.voice=was};d.appendChild(s)}
+  $('#msgs').appendChild(d);$('#msgs').scrollTop=1e9;return b}
 
-/* ===================== Capacidades (se encienden si este visor las ofrece) ===================== */
-(async()=>{
-  const C=window.claude;if(!C||!C.use)return;
-  C.use('sample').then(s=>{SAMPLE=s;if(!$('#chat').hidden)renderMode()}).catch(()=>{});
-  C.use('tts').then(t=>{TTS=t;if(t){$('#voiceTg').hidden=false;try{t.onState(({state})=>talk('voice',state==='speaking'||state==='starting'))}catch(e){}}}).catch(()=>{});
-  C.use('dictation').then(d=>{DICT=d;if(!d)return;$('#mic').hidden=false;
-    d.onPartial(({text})=>{txt.value=dictBase+text;fit()});
-    d.onFinal(({text})=>{dictBase=dictBase+text+' ';txt.value=dictBase;fit()});
-    d.onState(({state})=>{dictOn=state==='listening';$('#mic').classList.toggle('on',dictOn);
-      if(state==='idle'&&txt.value.trim()&&dictBase){const q=txt.value;dictBase='';ask(q)}});
-  }).catch(()=>{});
+/* ---------- preguntar (interrumpe al personaje si está hablando) ---------- */
+function prompt(){const p=st.p,y=st.year,i=y-Y0;
+  const inst=`Eres ${p.name}, ${p.role} en ${p.place}, Camboya, en el año ${y}. ${p.bio}
+Contexto de ${y}: ${EV[y]} Datos de ${y}: PIB ${fmt(GDP[i])} %${y===2026?' (proyección)':''}, inflación ${fmt(INF[i])} %${WAGE[y]?`, salario mínimo textil US$${WAGE[y]}`:''}.
+Cómo hablar: español sencillo, cálido y natural, en primera persona, como en un chat. Máximo 2 frases cortas (unas 35 palabras). Cuenta un detalle concreto de tu día a día. Sin listas. Solo sabes lo ocurrido hasta ${y}. Usa solo las cifras dadas; no inventes datos. No tomes partido político. Si te preguntan si eres real, di que eres un personaje ficticio de un póster universitario basado en datos reales.`;
+  const msgs=[{role:'user',content:inst+'\n\nSaluda.'},...st.hist.slice(-10)];return msgs}
+async function ask(q){
+  q=(q||'').trim();if(!q)return;
+  halt();unlock();const id=++st.req;
+  st.hist.push({role:'user',content:q});bubble('me',q);$('#txt').value='';
+  talk('type',true);const h=document.createElement('div');h.className='m them holder';h.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';$('#msgs').appendChild(h);$('#msgs').scrollTop=1e9;
+  sayStart();let ans='',body=null,said=0;
+  const feed=(text,final)=>{const parts=splitS(text);const upto=final?parts.length:parts.length-1;for(;said<upto;said++)sayLine(parts[said])};
+  if(SAMPLE){
+    try{st.ctrl=new AbortController();
+      const r=await SAMPLE(prompt(),{modelTier:'quick',cache:false,signal:st.ctrl.signal,onText:({text})=>{if(id!==st.req)return;if(!body){h.remove();body=bubble('them','')}body.textContent=text;$('#msgs').scrollTop=1e9;feed(text,false)}});
+      if(id!==st.req)return;ans=(r&&r.text||'').trim();
+    }catch(e){if(id!==st.req)return;if(e&&(e.code==='not_granted'||e.code==='unavailable')){SAMPLE=null;renderFoot()}ans=''}
+  }else{await new Promise(r=>setTimeout(r,260));if(id!==st.req)return}
+  if(!ans){ans=offline(q);if(body)body.textContent=ans}
+  if(!body){h.remove();body=bubble('them',ans)}else body.textContent=ans;
+  feed(ans,true);
+  st.hist.push({role:'assistant',content:ans});talk('type',false);
+}
+$('#f').onsubmit=e=>{e.preventDefault();ask($('#txt').value)};
+
+/* ---------- micrófono (si el visor lo ofrece) ---------- */
+let dOn=false,dBase='';
+$('#mic').onclick=()=>{if(!DICT)return;if(dOn){DICT.stop().catch(()=>{});return}halt();dBase='';DICT.start().catch(e=>{if(e&&e.code==='not_granted')$('#mic').hidden=true})};
+
+/* ---------- capacidades de Claude (solo dentro de Claude) ---------- */
+(async()=>{const C=window.claude;if(!C||!C.use)return;
+  C.use('sample').then(s=>{SAMPLE=s;if(!$('#chat').hidden)renderFoot()}).catch(()=>{});
+  C.use('tts').then(t=>{if(!t)return;TTS=t;try{t.onState(({state})=>talk('voice',state==='speaking'||state==='starting'))}catch(e){}}).catch(()=>{});
+  C.use('dictation').then(d=>{if(!d)return;DICT=d;$('#mic').hidden=false;const tx=$('#txt');
+    d.onPartial(({text})=>{tx.value=dBase+text});d.onFinal(({text})=>{dBase+=text+' ';tx.value=dBase});
+    d.onState(({state})=>{dOn=state==='listening';$('#mic').classList.toggle('on',dOn);if(state==='idle'&&tx.value.trim()){const q=tx.value;dBase='';ask(q)}})}).catch(()=>{});
 })();
-if(window.speechSynthesis&&!TTS){$('#voiceTg').hidden=false}
+$('#vol').textContent=st.voice?'🔊':'🔇';
 route();
 </script>
 </body></html>
