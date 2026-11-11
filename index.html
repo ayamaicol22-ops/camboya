@@ -1,0 +1,589 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Póster Camboya</title><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Póster Camboya</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500&family=Press+Start+2P&family=Noto+Sans+Khmer:wght@600&display=swap">
+<style>
+/* Tres capas: (1) intro y menú con estética del juego (pixel, universidad, telón);
+   (2) "Habla con Camboya", chat realista tipo mensajería; (3) Fuentes, página sobria. */
+:root{
+  --bg:#FFFFFF; --surface:#F6F0E4; --ink:#1E2433; --muted:#5E6577; --navy:#1B2A5C; --blue:#2E5AAC; --gold:#8C6420; --line:#D9DCE5; --red:#C8102E;
+  --chat-bg:#EEF1F7; --bub-me:#2E5AAC; --bub-me-ink:#FFFFFF; --bub-them:#FFFFFF; --bub-them-ink:#1E2433; --panel:#FFFFFF; --chip:#E3E9F6; --chip-ink:#1B2A5C;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; --pixel:"Press Start 2P",ui-monospace,monospace; --khmer:"Noto Sans Khmer","Khmer OS",sans-serif;
+  --g-gold:#FFB627; --g-ink:#2B1A14; --g-cream:#FFF3D6; --g-deep:#120A1C;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11162A;--surface:#1B2240;--ink:#E7E9F2;--muted:#A3A9BD;--navy:#C9D5F5;--blue:#8FB0F0;--gold:#E3BE7E;--line:#2C3558;--red:#FF6B7F;--chat-bg:#0E1324;--bub-me:#3D6BC4;--bub-me-ink:#FFFFFF;--bub-them:#1E2644;--bub-them-ink:#E7E9F2;--panel:#161D36;--chip:#26305A;--chip-ink:#DCE4FA;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11162A;--surface:#1B2240;--ink:#E7E9F2;--muted:#A3A9BD;--navy:#C9D5F5;--blue:#8FB0F0;--gold:#E3BE7E;--line:#2C3558;--red:#FF6B7F;--chat-bg:#0E1324;--bub-me:#3D6BC4;--bub-me-ink:#FFFFFF;--bub-them:#1E2644;--bub-them-ink:#E7E9F2;--panel:#161D36;--chip:#26305A;--chip-ink:#DCE4FA;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+button{font:inherit;cursor:pointer}
+.view[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ---------- 1. Intro y menú (estética del juego) ---------- */
+#intro{position:fixed;inset:0;z-index:20;background:var(--g-deep);color:var(--g-cream);overflow:hidden;display:flex;align-items:center;justify-content:center;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:calc(24px + env(safe-area-inset-top,0px)) calc(24px + env(safe-area-inset-bottom,0px))}
+#intro .bg{position:absolute;inset:0;background:#2a3b6b url("universidad.webp") center/cover no-repeat;image-rendering:pixelated}
+#intro .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,10,28,.25) 0%,rgba(18,10,28,.55) 55%,rgba(18,10,28,.88) 100%);transition:background .6s}
+#intro.menu .shade{background:rgba(18,10,28,.78)}
+.curtain{position:absolute;top:0;width:50%;height:100%;z-index:5;background:repeating-linear-gradient(90deg,#2a0404 0,#580a0a 15px,#991b1b 30px,#580a0a 45px,#2a0404 60px);transition:transform 1.2s cubic-bezier(.77,0,.175,1);pointer-events:none}
+.curtain.l{left:0;border-right:6px solid var(--g-gold)} .curtain.r{right:0;border-left:6px solid var(--g-gold)}
+#intro.open .curtain.l{transform:translateX(-102%)} #intro.open .curtain.r{transform:translateX(102%)}
+.ctop{position:absolute;top:0;left:0;right:0;height:28px;z-index:6;background:linear-gradient(180deg,#991b1b,#450a0a);border-bottom:4px solid var(--g-gold);transition:opacity 1s}
+#intro.open .ctop{opacity:0}
+.icontent{position:relative;z-index:3;width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.flagpix{width:84px;height:56px;border:3px solid var(--g-cream);box-shadow:0 4px 0 #000;image-rendering:pixelated}
+.ptitle{font-family:var(--pixel);color:var(--g-gold);text-shadow:3px 3px 0 #000;font-size:clamp(17px,5vw,26px);line-height:1.5}
+.psub{font-family:var(--pixel);color:var(--g-cream);text-shadow:2px 2px 0 #000;font-size:clamp(9px,2.6vw,11px);line-height:1.9}
+.khm{font-family:var(--khmer);font-size:22px;color:var(--g-cream);text-shadow:2px 2px 0 #000}
+.tap{font-family:var(--pixel);font-size:13px;color:var(--g-gold);text-shadow:2px 2px 0 #000;animation:blink 1.2s infinite;margin-top:10px;background:none;border:0;padding:10px}
+@keyframes blink{50%{opacity:.15}}
+.menu-card{display:none;flex-direction:column;gap:16px;width:100%;background:rgba(42,26,58,.92);border:3px solid var(--g-gold);border-radius:10px;padding:20px 18px;box-shadow:0 6px 0 #000}
+#intro.menu .menu-card{display:flex} #intro.menu .tap{display:none}
+.menu-card h2{font-family:var(--pixel);font-size:12px;color:var(--g-cream);line-height:1.8;margin:0}
+.gbtn{display:flex;align-items:center;gap:14px;width:100%;text-align:left;min-height:64px;padding:14px 16px;border:3px solid #8a4b00;background:var(--g-gold);color:var(--g-ink);border-radius:8px;box-shadow:0 5px 0 #8a4b00;transition:transform .1s,box-shadow .1s}
+.gbtn:active{transform:translateY(4px);box-shadow:0 1px 0 #8a4b00}
+.gbtn.blue{background:#6FB3FF;border-color:#1f4f8f;box-shadow:0 5px 0 #1f4f8f}
+.gbtn .gi{font-size:28px;flex:none}
+.gbtn b{display:block;font-family:var(--pixel);font-size:13px;line-height:1.6}
+.gbtn span{display:block;font-weight:700;font-size:14px;line-height:1.3}
+.audio-tg{position:absolute;z-index:7;top:calc(10px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:44px;height:44px;border:2px solid var(--g-gold);background:rgba(42,26,58,.8);color:var(--g-cream);border-radius:8px;font-size:18px}
+.credit{font-family:var(--pixel);font-size:8px;color:var(--g-cream);opacity:.8;line-height:1.8}
+
+/* ---------- barra superior compartida ---------- */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;
+  padding-block:10px;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+.back{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;height:40px;padding:0 14px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:6px;flex:none}
+.topbar .tt{font-weight:800;color:var(--navy);font-size:16px;line-height:1.2;min-width:0}
+.topbar .tt small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+
+/* ---------- 2. Habla con Camboya (chat realista) ---------- */
+#chat{height:100vh;height:100dvh;display:flex;flex-direction:column;background:var(--chat-bg);overflow-y:auto}
+#chat .topbar{position:relative;top:0}
+.cwrap{width:100%;max-width:760px;margin:0 auto;display:flex;flex-direction:column;flex:1 1 0;min-height:auto}
+.yearbar{background:var(--panel);border-bottom:1px solid var(--line);padding-block:10px 12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.yearbar .in{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.yrow{display:flex;align-items:center;gap:12px}
+.ybig{font-weight:800;font-size:30px;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1;min-width:84px}
+.ystep{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:18px;flex:none}
+input[type=range]{flex:1;min-width:0;accent-color:var(--red);height:32px}
+.ctx{display:flex;flex-wrap:wrap;gap:6px 8px;font-size:13px}
+.ctx .k{background:var(--surface);color:var(--navy);border-radius:999px;padding:2px 10px;font-weight:700;font-variant-numeric:tabular-nums}
+.ctx .ev{flex-basis:100%;color:var(--ink);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+.ctx .ev.open{-webkit-line-clamp:unset}
+.people{flex:none;display:flex;gap:8px;overflow-x:auto;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));scrollbar-width:none}
+.people::-webkit-scrollbar{display:none}
+.pc{flex:none;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:5px 14px 5px 5px;font-size:14px;font-weight:700}
+.pc[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset}
+.pc small{display:block;font-weight:500;color:var(--muted);font-size:11.5px;line-height:1.1}
+.av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px}
+.who{display:flex;align-items:center;gap:10px;padding-block:6px 10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.who .av{width:46px;height:46px;font-size:18px}
+.who b{display:block;font-size:16px;color:var(--navy);line-height:1.2}
+.who .wr{font-size:13px;color:var(--muted);line-height:1.3;display:block}
+.who .st{margin-left:auto;font-size:12px;color:var(--muted);text-align:right;flex:none}
+.msgs{flex:1 1 0;overflow-y:auto;min-height:170px;display:flex;flex-direction:column;gap:8px;padding-block:8px 12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.m{max-width:84%;padding:9px 13px;border-radius:16px;font-size:15.5px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere;position:relative}
+.m.them{align-self:flex-start;background:var(--bub-them);color:var(--bub-them-ink);border-bottom-left-radius:5px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.m.me{align-self:flex-end;background:var(--bub-me);color:var(--bub-me-ink);border-bottom-right-radius:5px}
+.m .meta{display:flex;gap:10px;align-items:center;margin-top:4px;font-size:11.5px;color:var(--muted)}
+.m .say{border:0;background:none;color:var(--blue);font-weight:700;font-size:12px;padding:2px 0}
+.sys{align-self:center;font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 12px;text-align:center;max-width:92%}
+.typing{display:inline-flex;gap:4px} .typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:dot 1s infinite} .typing i:nth-child(2){animation-delay:.15s} .typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{opacity:.25;transform:translateY(-3px)}}
+.chips{flex:none;display:flex;gap:8px;overflow-x:auto;padding-block:4px 8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;border:0;background:var(--chip);color:var(--chip-ink);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600}
+.compose{position:sticky;bottom:0;background:var(--panel);border-top:1px solid var(--line);display:flex;gap:8px;align-items:flex-end;
+  padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px),calc((100% - 760px)/2));padding-right:max(12px,env(safe-area-inset-right,0px),calc((100% - 760px)/2))}
+.compose textarea{flex:1;min-width:0;resize:none;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:20px;padding:10px 14px;font:inherit;font-size:16px;line-height:1.35;max-height:120px}
+.cbtn{width:44px;height:44px;border-radius:50%;border:0;flex:none;display:grid;place-items:center;font-size:18px}
+.cbtn.send{background:var(--blue);color:#fff}
+.cbtn.mic{background:var(--chip);color:var(--chip-ink)}
+.cbtn.mic.on{background:var(--red);color:#fff;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(200,16,46,.25)}}
+.cbtn:disabled{opacity:.45}
+.voice{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;height:40px;padding:0 12px;font-size:13px;font-weight:700;margin-left:auto;flex:none}
+.voice[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.stage{position:relative;flex:none;height:clamp(150px,24vh,250px);margin:4px max(16px,env(safe-area-inset-right,0px)) 6px max(16px,env(safe-area-inset-left,0px));border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(20,30,60,.15);background:#cfd8e6}
+.stage .bgsv{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage .ptw{position:absolute;left:50%;bottom:0;height:100%;transform:translateX(-50%);transition:transform .3s}
+.stage .pt{height:100%;display:block}
+.stage.talking .ptw{animation:bob .5s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateX(-50%) translateY(-2px)}}
+.pt .mo{opacity:0;transform-box:fill-box;transform-origin:center}
+.talking .pt .mo{opacity:1;animation:talk .18s ease-in-out infinite alternate}
+.talking .pt .mc{opacity:0}
+@keyframes talk{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+.pt .eyes{transform-box:fill-box;transform-origin:center;animation:blink 4.2s infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.tagn{position:absolute;left:10px;bottom:10px;background:rgba(15,20,40,.72);color:#fff;border-radius:10px;padding:6px 10px;line-height:1.2;max-width:60%}
+.tagn b{display:block;font-size:15px}.tagn span{font-size:12px;opacity:.9}
+.live{position:absolute;right:10px;top:10px;background:rgba(15,20,40,.72);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.live i{width:8px;height:8px;border-radius:50%;background:#3CCB6B}
+.stage.talking .live i{background:#FF5D5D;animation:pulse 1s infinite}
+.wave{display:none;gap:2px;align-items:center;height:12px}.wave s{width:3px;background:#fff;border-radius:2px;animation:wv .5s infinite alternate}
+.wave s:nth-child(2){animation-delay:.12s}.wave s:nth-child(3){animation-delay:.24s}.wave s:nth-child(4){animation-delay:.36s}
+.stage.talking .wave{display:inline-flex}
+@keyframes wv{from{height:3px}to{height:12px}}
+.yrtag{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.88);color:#1B2A5C;border-radius:8px;padding:3px 9px;font-weight:800;font-size:16px;font-variant-numeric:tabular-nums}
+.av.pa{background:#E3E9F6;overflow:hidden;display:block}
+.av.pa .pt{width:150%;height:150%;margin:-6% 0 0 -25%;display:block}
+.mode{flex:none;font-size:11.5px;line-height:1.35;color:var(--muted);text-align:center;padding:0 16px 6px}
+
+@media (max-width:640px){
+ #chat .topbar .tt small{display:none}
+ #chat .topbar{padding-block:8px}
+ .yearbar{padding-block:6px 8px}.yearbar .in{gap:5px}
+ .ybig{font-size:25px;min-width:70px}.ystep{width:36px;height:36px}
+ .ctx{font-size:12px;gap:4px 6px}.ctx .ev{-webkit-line-clamp:1}
+ .people{padding-block:6px}.pc{padding:3px 12px 3px 3px;font-size:13px}.pc small{display:none}.pc .av{width:32px;height:32px}
+ .stage{height:150px;margin-top:2px}
+ .tagn{padding:4px 8px}.tagn b{font-size:14px}.tagn span{font-size:11px}
+ .mode{padding-bottom:4px}
+}
+/* ---------- 3. Fuentes ---------- */
+#fuentes{padding-bottom:48px}
+.fwrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:36px;padding-block:24px 0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.flagbar{height:8px;border-radius:4px;background:linear-gradient(#032EA1 0 25%,#E00025 25% 75%,#032EA1 75%)}
+.fhead{display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.fhead h1{font-size:clamp(26px,5vw,38px);line-height:1.15;color:var(--navy);text-wrap:balance;margin:0}
+.by{color:var(--muted);margin:0}
+.poster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:start}
+.poster figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.poster img{display:block;width:100%;height:auto}
+.about{display:flex;flex-direction:column;gap:12px;min-width:0}
+.about p{margin:0}
+.chip{display:inline-block;font-family:var(--mono);font-size:12px;background:var(--surface);color:var(--navy);border-radius:999px;padding:2px 10px}
+#fuentes a{color:var(--blue);text-underline-offset:2px}
+#fuentes h2{font-size:22px;color:var(--navy);margin:0 0 4px}
+.blocks{display:flex;flex-direction:column;gap:22px}
+.block{border-top:2px solid var(--line);padding-top:16px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px}
+.num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--bg);font-weight:800;display:flex;align-items:center;justify-content:center}
+.block h3{margin:4px 0 10px;font-size:18px;color:var(--ink)}
+.block ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.block li{min-width:0}
+.tag{font-family:var(--mono);font-size:12px;color:var(--gold);display:block;letter-spacing:.04em}
+.ref{overflow-wrap:anywhere}
+.note{background:var(--surface);border-radius:10px;padding:14px 16px}
+.note b{color:var(--navy)}
+footer{color:var(--muted);font-size:14px}
+@media (max-width:640px){.poster{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<!-- ===================== INTRO / MENÚ ===================== -->
+<div id="intro" class="view">
+  <div class="bg" aria-hidden="true"></div><div class="shade" aria-hidden="true"></div>
+  <div class="ctop" aria-hidden="true"></div><div class="curtain l" aria-hidden="true"></div><div class="curtain r" aria-hidden="true"></div>
+  <button class="audio-tg" id="snd" aria-label="Sonido">🔊</button>
+  <div class="icontent">
+    <svg class="flagpix" viewBox="0 0 36 24" aria-label="Bandera de Camboya" shape-rendering="crispEdges"><rect width="36" height="24" fill="#032EA1"/><rect y="6" width="36" height="12" fill="#E00025"/><g fill="#fff"><rect x="12" y="15" width="12" height="2"/><rect x="13" y="12" width="10" height="3"/><rect x="14" y="10" width="2" height="2"/><rect x="17" y="8" width="2" height="4"/><rect x="20" y="10" width="2" height="2"/><rect x="17" y="7" width="2" height="1"/></g></svg>
+    <div class="khm" lang="km">ជំរាបសួរ</div>
+    <div class="ptitle">CAMBOYA<br>2021–2025</div>
+    <div class="psub">¿Puede sostener su crecimiento<br>pese a depender de EE. UU. y China?</div>
+    <div class="credit">MICHAEL AYA · RR. II. Y ESTUDIOS POLÍTICOS</div>
+    <button class="tap" id="tap">TOCA PARA CONTINUAR</button>
+    <div class="menu-card" role="menu">
+      <h2>ELIGE UNA OPCIÓN</h2>
+      <button class="gbtn" id="go-fuentes" role="menuitem"><span class="gi">📚</span><span><b>FUENTES</b><span>Todas las fuentes del póster, por sección.</span></span></button>
+      <button class="gbtn blue" id="go-chat" role="menuitem"><span class="gi">💬</span><span><b>HABLA CON CAMBOYA</b><span>Conversa con personajes de 1995 a 2026.</span></span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HABLA CON CAMBOYA ===================== -->
+<div id="chat" class="view" hidden>
+  <div class="topbar">
+    <button class="back" data-home>← Menú</button>
+    <div class="tt">Habla con Camboya<small>Personajes ficticios con datos reales</small></div>
+    <button class="voice" id="voiceTg" aria-pressed="false" hidden>🔊 Voz</button>
+  </div>
+  <div class="yearbar"><div class="in">
+    <div class="yrow">
+      <button class="ystep" id="yPrev" aria-label="Año anterior">‹</button>
+      <div class="ybig" id="yBig">2025</div>
+      <input type="range" id="yRange" min="1995" max="2026" step="1" value="2025" aria-label="Año">
+      <button class="ystep" id="yNext" aria-label="Año siguiente">›</button>
+    </div>
+    <div class="ctx" id="ctx"></div>
+  </div></div>
+  <div class="cwrap">
+    <div class="people" id="people" role="group" aria-label="Elige con quién hablar"></div>
+    <div class="stage" id="stage"></div>
+    <div class="msgs" id="msgs" aria-live="polite"></div>
+    <div class="mode" id="mode"></div>
+    <div class="chips" id="chips"></div>
+  </div>
+  <form class="compose" id="compose">
+    <button type="button" class="cbtn mic" id="mic" aria-label="Hablar por micrófono" hidden>🎤</button>
+    <textarea id="txt" rows="1" placeholder="Escribe tu pregunta…" aria-label="Mensaje"></textarea>
+    <button type="submit" class="cbtn send" id="send" aria-label="Enviar">➤</button>
+  </form>
+</div>
+
+<!-- ===================== FUENTES ===================== -->
+<div id="fuentes" class="view" hidden>
+  <div class="topbar"><button class="back" data-home>← Menú</button><div class="tt">Fuentes del póster<small>Ordenadas por las 7 secciones</small></div></div>
+  <div class="fwrap">
+    <div class="flagbar" aria-hidden="true"></div>
+    <header class="fhead">
+      <span class="eyebrow">Póster digital y fuentes · Reino de Camboya</span>
+      <h1>¿Puede Camboya sostener su crecimiento económico pese a depender de EE.&nbsp;UU. y de China?</h1>
+      <p class="by">Michael Aya · Relaciones Internacionales y Estudios Políticos · Macroeconomía · Datos 2021–2025 (proyección 2026)</p>
+    </header>
+    <section class="poster" aria-label="Póster digital">
+      <figure><img src="poster.jpg" alt="Póster completo sobre el crecimiento económico de Camboya" width="1600" height="2284" loading="lazy"></figure>
+      <div class="about">
+        <h2>Sobre este póster</h2>
+        <p>Póster académico individual de Macroeconomía: radiografía económica, ciclo y modelo OA-DA, precios y empleo, comercio y tipo de cambio, política monetaria y fiscal con Mundell-Fleming, crecimiento de largo plazo y respuesta a la pregunta.</p>
+        <p>Aquí están todas las fuentes de cada dato, gráfico e imagen, ordenadas según las siete secciones del póster.</p>
+        <p><span class="chip">Póster vertical 70 × 100 cm · series desde 1991, énfasis 2021–2025</span></p>
+        <div class="note"><b>Cifras proyectadas.</b> Los valores de 2026 son proyecciones del FMI (septiembre de 2026). En la inflación, las cuentas fiscales y las reservas, los años 2022–2024 vienen del informe del FMI de noviembre de 2025 y el año 2025 del de septiembre de 2026.</div>
+      </div>
+    </section>
+    <section aria-label="Fuentes por sección">
+    <h2>Fuentes por sección</h2>
+    <div class="blocks"><div class="block"><div class="num">1</div><div><h3>Radiografía económica de Camboya</h3><ul><li><span class="tag">Ficha · Población 2025</span><span class="ref">Banco Mundial, WDI (SP.POP.TOTL), vía <a href="https://statisticsoftheworld.com/country/cambodia/population" target="_blank" rel="noopener">statisticsoftheworld.com</a>.</span></li><li><span class="tag">Ficha · Moneda nacional y tipo de cambio 2025</span><span class="ref">Banco Nacional de Camboya, vía <a href="https://en.vietstock.vn/2026/03/khr-gains-15-against-dollar-in-2025-52000-630120.htm" target="_blank" rel="noopener">Vietstock (31 mar. 2026)</a>.</span></li><li><span class="tag">Ficha · PIB nominal, crecimiento, inflación, saldo fiscal y deuda 2025</span><span class="ref">FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>.</span></li><li><span class="tag">Ficha · PIB per cápita nominal y en PPA</span><span class="ref">FMI, World Economic Outlook, vía <a href="https://statisticsoftheworld.com/country/KHM/IMF.NGDPDPC" target="_blank" rel="noopener">statisticsoftheworld.com</a> y <a href="https://statisticsoftheworld.com/country/cambodia/forecast" target="_blank" rel="noopener">WEO</a>.</span></li><li><span class="tag">Ficha · Desempleo 2025 (3,6 %)</span><span class="ref">INE de Camboya (2026). <a href="https://nis.gov.kh/wp-content/uploads/2026/06/CLFS_2025_Prelimnary_report_ILO_ENG_V19_rv.pdf" target="_blank" rel="noopener">Cambodia Labour Force Survey 2025: Preliminary report</a>.</span></li><li><span class="tag">Resumen · Reservas (8,9 meses de importaciones) y apertura comercial (126 % = exportaciones + importaciones / PIB)</span><span class="ref">FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>; comercio: <a href="https://en.vietstock.vn/2026/01/cambodia-steps-into-a-new-era-of-trade-balance-52000-628257.htm" target="_blank" rel="noopener">Vietstock (19 ene. 2026)</a>; cálculo propio.</span></li><li><span class="tag">Resumen · Dolarización 83,4 %</span><span class="ref">AMRO (2026). <a href="https://amro-asia.org/wp-content/uploads/2026/07/AMRO-Cambodia-ACR-2026_SI_1-US-Dollar-Liquidity_20260727.pdf" target="_blank" rel="noopener">Cambodia Annual Consultation Report: US Dollar Liquidity</a>.</span></li><li><span class="tag">Gráfico 1 · Crecimiento del PIB real, 1995–2025</span><span class="ref">Banco Mundial, WDI (NY.GDP.MKTP.KD.ZG), vía <a href="https://www.theglobaleconomy.com/Cambodia/Economic_growth/" target="_blank" rel="noopener">TheGlobalEconomy</a>; 2021–2025: INE de Camboya y FMI. Promedios: cálculo propio.</span></li><li><span class="tag">Gráfico 2 · Inflación, 1995–2025</span><span class="ref">Banco Mundial, WDI (FP.CPI.TOTL.ZG), vía <a href="https://www.indexmundi.com/facts/cambodia/indicator/FP.CPI.TOTL.ZG" target="_blank" rel="noopener">IndexMundi</a>; 2022–2025: FMI, <a href="https://www.imf.org/en/News/Articles/2025/11/25/pr25394-cambodia-imf-concludes-2025-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2025</a> y <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">2026</a>.</span></li><li><span class="tag">Gráfico 3 · Desempleo, 1991–2025</span><span class="ref">OIT, estimaciones modeladas, vía <a href="https://statisticsoftheworld.com/country/cambodia/unemployment" target="_blank" rel="noopener">statisticsoftheworld.com</a>; 2025: <a href="https://nis.gov.kh/wp-content/uploads/2026/06/CLFS_2025_Prelimnary_report_ILO_ENG_V19_rv.pdf" target="_blank" rel="noopener">encuesta nacional de fuerza laboral</a>.</span></li><li><span class="tag">Gráfico 4 · Saldo fiscal y deuda pública, 1996–2025</span><span class="ref">FMI, WEO: <a href="https://statisticsoftheworld.com/country/cambodia/IMF.GGXCNL_NGDP" target="_blank" rel="noopener">saldo fiscal</a> y <a href="https://statisticsoftheworld.com/country/KHM/IMF.GGXWDG_NGDP" target="_blank" rel="noopener">deuda bruta</a>; ver también <a href="https://historysaid.com/cambodia/budget-deficit/2020s" target="_blank" rel="noopener">HistorySaid</a>.</span></li></ul></div></div><div class="block"><div class="num">2</div><div><h3>Ciclo económico y OA-DA</h3><ul><li><span class="tag">Tarjetas · PIB 2021 → 2022 (3,1 % → 5,1 %)</span><span class="ref">INE de Camboya, <a href="https://nis.gov.kh/?p=4656" target="_blank" rel="noopener">cuentas nacionales</a>.</span></li><li><span class="tag">Tarjetas · Confecciones (≈ 50 % de las exportaciones)</span><span class="ref">Ministerio de Comercio, vía <a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/01/20/cambodia-makes-us155bil-from-exports-of-garments-shoes-travel-goods-in-2025" target="_blank" rel="noopener">The Star (20 ene. 2026)</a>.</span></li><li><span class="tag">Tarjetas · Inversión 31,5 % del PIB e IED US$5.100 M</span><span class="ref">FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>; Banco Mundial (2026), <a href="https://documents1.worldbank.org/curated/en/099060826021523553/pdf/P506814-10b627b2-862d-4011-b5f4-7d13dd9d522b.pdf" target="_blank" rel="noopener">Cambodia Economic Update</a>.</span></li><li><span class="tag">Tarjetas · Exportaciones +14,7 % (2025)</span><span class="ref">Aduanas de Camboya, vía <a href="https://en.vietstock.vn/2026/01/cambodia-steps-into-a-new-era-of-trade-balance-52000-628257.htm" target="_blank" rel="noopener">Vietstock (19 ene. 2026)</a>.</span></li><li><span class="tag">Gráfico 5 · Modelo OA-DA 2021–2022</span><span class="ref">Elaboración propia. Inflación 2021: BNC, vía <a href="https://acledasecurities.com.kh/kh/eng/fi_keyecoindicator" target="_blank" rel="noopener">ACLEDA Securities</a>; 2022: FMI, <a href="https://www.imf.org/en/News/Articles/2025/11/25/pr25394-cambodia-imf-concludes-2025-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2025</a>.</span></li></ul></div></div><div class="block"><div class="num">3</div><div><h3>Precios, empleo y salarios</h3><ul><li><span class="tag">Inflación 2021–2026p</span><span class="ref">BNC (2021); FMI, <a href="https://www.imf.org/en/News/Articles/2025/11/25/pr25394-cambodia-imf-concludes-2025-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2025</a> y <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a> (2022–2026p).</span></li><li><span class="tag">Desempleo total y juvenil, salarios por sexo, informalidad y empleo agrícola 2025</span><span class="ref">INE de Camboya y OIT (2026), <a href="https://nis.gov.kh/wp-content/uploads/2026/06/CLFS_2025_Prelimnary_report_ILO_ENG_V19_rv.pdf" target="_blank" rel="noopener">Cambodia Labour Force Survey 2025</a>; <a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/03/cambodia039s-working-age-population-hits-131-million-survey-shows" target="_blank" rel="noopener">The Star (3 sep. 2026)</a>; <a href="https://cdri.org.kh/news/working-cambodia-2025-a-need-for-more-quality-jobs-2" target="_blank" rel="noopener">CDRI</a>.</span></li><li><span class="tag">Empleo agrícola 2000</span><span class="ref">OIT, estimaciones modeladas, vía Banco Mundial (WDI).</span></li></ul></div></div><div class="block"><div class="num">4</div><div><h3>Comercio y tipo de cambio</h3><ul><li><span class="tag">EE. UU. recibe ≈ 43 % de las exportaciones; arancel de 19 %</span><span class="ref">Aduanas de Camboya, vía <a href="https://en.vietstock.vn/2025/12/us-remains-cambodias-largest-export-market-as-shipments-top-11b-52000-626891.htm" target="_blank" rel="noopener">Vietstock (25 dic. 2025)</a>; <a href="https://www.thestar.com.my/aseanplus/aseanplus-news/2025/08/01/cambodia-deputy-pm-says-19-us-tariff-rate-averts-collapse-of-its-garments-manufacturing-sector" target="_blank" rel="noopener">The Star (1 ago. 2025)</a>.</span></li><li><span class="tag">Gráfico 6 · Comercio por socio y déficit comercial 2025</span><span class="ref">Aduanas (GDCE), vía <a href="https://en.vietstock.vn/2026/01/cambodia-steps-into-a-new-era-of-trade-balance-52000-628257.htm" target="_blank" rel="noopener">Vietstock (19 ene. 2026)</a>.</span></li><li><span class="tag">Gráfico 7 · Tipo de cambio 2021–2025 y apreciación del riel (1,5 %)</span><span class="ref">BAsD, <a href="https://data.adb.org/media/13931/download" target="_blank" rel="noopener">Key Indicators 2025</a> (2021–2024); BNC, vía <a href="https://en.vietstock.vn/2026/03/khr-gains-15-against-dollar-in-2025-52000-630120.htm" target="_blank" rel="noopener">Vietstock</a> (2025).</span></li></ul></div></div><div class="block"><div class="num">5</div><div><h3>Dinero, gasto público y Mundell-Fleming</h3><ul><li><span class="tag">Política monetaria: ancla cambiaria y desdolarización</span><span class="ref">FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>; AMRO (2026); Cambodianess (2026). <a href="https://cambodianess.com/article/why-cambodia-cant-just-raise-interest-rates-to-fight-inflation" target="_blank" rel="noopener">Why Cambodia can’t just raise interest rates</a>.</span></li><li><span class="tag">Política fiscal: déficit 2025–2026</span><span class="ref">FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>.</span></li><li><span class="tag">Gráfico 8 · Mundell-Fleming con tipo de cambio fijo</span><span class="ref">Elaboración propia según el modelo IS-LM-BP (De Gregorio, Macroeconomía).</span></li></ul></div></div><div class="block"><div class="num">6</div><div><h3>Crecimiento de largo plazo</h3><ul><li><span class="tag">s · Inversión 31,5 % del PIB</span><span class="ref">FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>.</span></li><li><span class="tag">n · Crecimiento de la población 1,2 % (2025)</span><span class="ref">Banco Mundial, vía <a href="https://fred.stlouisfed.org/series/SPPOPGROWKHM" target="_blank" rel="noopener">FRED (SPPOPGROWKHM)</a>.</span></li><li><span class="tag">y · PIB per cápita PPA y crecimiento promedio 1995–2019 (7,7 %)</span><span class="ref">FMI, WEO; Banco Mundial, WDI; promedio: cálculo propio.</span></li><li><span class="tag">Gráfico 9 · Modelo de Solow</span><span class="ref">Elaboración propia (modelo de Solow básico).</span></li><li><span class="tag">Recomendaciones</span><span class="ref">FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>; Banco Mundial (2026), <a href="https://documents1.worldbank.org/curated/en/099060826021523553/pdf/P506814-10b627b2-862d-4011-b5f4-7d13dd9d522b.pdf" target="_blank" rel="noopener">Cambodia Economic Update</a>; Banco Mundial (2020), <a href="https://databankfiles.worldbank.org/public/ddpext_download/hci/HCI_2pager_KHM.pdf" target="_blank" rel="noopener">Human Capital Index: Cambodia</a>.</span></li></ul></div></div><div class="block"><div class="num">7</div><div><h3>Respuesta a la pregunta, mapa e imágenes</h3><ul><li><span class="tag">Respuesta</span><span class="ref">Síntesis propia de las secciones 1 a 6; PIB 2026 (3,0 %): FMI, <a href="https://www.imf.org/en/news/articles/2026/09/28/pr26307-cambodia-imf-executive-board-concludes-2026-article-iv-consultation" target="_blank" rel="noopener">Artículo IV 2026</a>.</span></li><li><span class="tag">Mapa de ubicación</span><span class="ref">Natural Earth, vía <a href="https://github.com/topojson/world-atlas" target="_blank" rel="noopener">world-atlas</a>; elaboración propia.</span></li><li><span class="tag">Fotografía de Angkor Wat</span><span class="ref">Fotografía aportada por el autor.</span></li><li><span class="tag">Bandera, íconos y gráficos</span><span class="ref">Elaboración propia con los datos citados.</span></li></ul></div></div></div>
+  </section>
+    <footer>Póster individual · Michael Aya · Relaciones Internacionales · 2026</footer>
+  </div>
+</div>
+
+<script>
+/* ===================== Personajes ilustrados (SVG) ===================== */
+const ART=(()=>{
+const SK={sokha:'#C98B5F',dara:'#A86B43',vuthy:'#B47A4F',chanthy:'#D19A6E'};
+const SKD={sokha:'#B07650',dara:'#8F5A37',vuthy:'#9C6842',chanthy:'#B9845C'};
+function face(id,s){
+  const k=SK[id],kd=SKD[id];
+  const brows=id==='dara'?'<path d="M80 72 Q88 68 95 72" stroke="#3A2A20" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M105 72 Q112 68 120 72" stroke="#3A2A20" stroke-width="3.2" fill="none" stroke-linecap="round"/>'
+    :'<path d="M80 73 Q88 69 95 72" stroke="#1E1612" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M105 72 Q112 69 120 73" stroke="#1E1612" stroke-width="2.8" fill="none" stroke-linecap="round"/>';
+  const lines=id==='dara'?'<path d="M76 96 Q79 100 78 104" stroke="'+kd+'" stroke-width="1.6" fill="none"/><path d="M124 96 Q121 100 122 104" stroke="'+kd+'" stroke-width="1.6" fill="none"/><path d="M90 64 H110" stroke="'+kd+'" stroke-width="1.4"/>':'';
+  return `
+  <rect x="88" y="108" width="24" height="30" rx="8" fill="${kd}"/>
+  <ellipse cx="66" cy="88" rx="6" ry="9" fill="${kd}"/><ellipse cx="134" cy="88" rx="6" ry="9" fill="${kd}"/>
+  <ellipse cx="100" cy="84" rx="34" ry="40" fill="${k}"/>
+  ${lines}
+  <ellipse cx="82" cy="98" rx="6" ry="3.5" fill="#E07A6A" opacity=".28"/><ellipse cx="118" cy="98" rx="6" ry="3.5" fill="#E07A6A" opacity=".28"/>
+  ${brows}
+  <g class="eyes"><ellipse cx="88" cy="84" rx="3.6" ry="4.2" fill="#1E1612"/><ellipse cx="112" cy="84" rx="3.6" ry="4.2" fill="#1E1612"/><circle cx="89.2" cy="82.6" r="1.1" fill="#fff"/><circle cx="113.2" cy="82.6" r="1.1" fill="#fff"/></g>
+  <path d="M100 88 Q97 96 99 98 Q101 99 103 98" stroke="${kd}" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <g class="mouth"><path class="mc" d="M91 106 Q100 113 109 106" stroke="#7A2E2A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <g class="mo"><ellipse cx="100" cy="107.5" rx="7" ry="5" fill="#6B1F24"/><ellipse cx="100" cy="110" rx="4" ry="2" fill="#E0727A"/></g></g>`;
+}
+function sokha(s){return `
+  <path d="M100 30 C64 30 58 62 62 92 L70 70 C80 52 120 52 130 70 L138 92 C142 62 136 30 100 30Z" fill="#17110E"/>
+  <circle cx="100" cy="30" r="13" fill="#17110E"/>
+  <path d="M28 200 C32 152 64 138 100 138 C136 138 168 152 172 200Z" fill="#2A9D8F"/>
+  <path d="M84 138 L100 160 L116 138" fill="#F4F1EA"/>
+  <path d="M70 142 C80 170 82 190 80 200 M130 142 C120 170 118 190 120 200" stroke="#F2C14E" stroke-width="6" fill="none"/>
+  <g stroke="#3A3A3A" stroke-width=".8"><path d="M71 152 h5 M73 160 h5 M75 168 h5 M77 176 h5 M129 152 h-5 M127 160 h-5 M125 168 h-5 M123 176 h-5"/></g>
+  <rect x="132" y="160" width="20" height="14" rx="2" fill="#fff"/><rect x="135" y="164" width="14" height="2" fill="#2A9D8F"/><rect x="135" y="168" width="9" height="2" fill="#2A9D8F"/>
+  ${face('sokha',s)}
+  <path d="M66 80 C70 52 92 46 104 50 C92 54 80 62 74 82Z" fill="#17110E"/><path d="M134 80 C130 54 112 46 98 50 C116 52 126 64 128 82Z" fill="#17110E"/>
+  <circle cx="66" cy="98" r="2" fill="#F2C14E"/><circle cx="134" cy="98" r="2" fill="#F2C14E"/>`}
+function dara(s){const P='kr'+s;return `
+  <defs><pattern id="${P}" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#C8102E"/><rect width="8" height="3" fill="#fff" opacity=".75"/><rect width="3" height="8" fill="#fff" opacity=".75"/></pattern></defs>
+  <path d="M26 200 C30 152 64 138 100 138 C136 138 170 152 174 200Z" fill="#6B7F3A"/>
+  <path d="M96 140 L100 200 M90 150 h4 M90 166 h4" stroke="#55682C" stroke-width="2"/>
+  ${face('dara',s)}
+  <path d="M62 80 C60 46 84 36 100 36 C118 36 142 46 138 80 C128 70 116 64 100 64 C84 64 72 70 62 80Z" fill="url(#${P})"/>
+  <path d="M132 58 C146 60 152 72 146 84 C142 76 138 70 132 66Z" fill="url(#${P})"/>
+  <path d="M64 70 Q100 56 136 70" stroke="#9E0C24" stroke-width="2" fill="none" opacity=".5"/>
+  <path d="M70 134 C86 146 114 146 130 134 L134 146 C116 158 84 158 66 146Z" fill="url(#${P})"/>
+  <path d="M118 148 L128 182 L114 182Z" fill="url(#${P})"/>`}
+function vuthy(s){return `
+  <path d="M26 200 C30 152 64 138 100 138 C136 138 170 152 174 200Z" fill="#4FA3D9"/>
+  <path d="M84 138 L100 154 L116 138 L112 134 L100 144 L88 134Z" fill="#fff"/><circle cx="100" cy="160" r="1.8" fill="#fff"/><circle cx="100" cy="170" r="1.8" fill="#fff"/>
+  ${face('vuthy',s)}
+  <path d="M66 82 C64 66 70 58 76 56 L76 76Z M134 82 C136 66 130 58 124 56 L124 76Z" fill="#17110E"/>
+  <path d="M64 66 C64 40 82 32 100 32 C118 32 136 40 136 66 Z" fill="#1B2A5C"/>
+  <path d="M60 66 H150 C150 72 142 74 132 72 H64Z" fill="#152148"/>
+  <circle cx="100" cy="34" r="3" fill="#152148"/><rect x="92" y="46" width="16" height="8" rx="2" fill="#F2C14E"/>`}
+function chanthy(s){return `
+  <path d="M60 80 C56 120 58 150 64 168 L136 168 C142 150 144 120 140 80 C136 44 64 44 60 80Z" fill="#17110E"/>
+  <path d="M28 200 C32 152 64 138 100 138 C136 138 168 152 172 200Z" fill="#F7F7F2"/>
+  <path d="M84 138 L100 152 L116 138 L120 146 L100 160 L80 146Z" fill="#fff" stroke="#D5D5CC"/>
+  <path d="M97 152 L103 152 L106 196 L100 200 L94 196Z" fill="#1B2A5C"/>
+  <path d="M40 160 C44 174 46 190 46 200" stroke="#C8102E" stroke-width="9" fill="none"/>
+  <rect x="122" y="164" width="18" height="12" rx="2" fill="#2E5AAC"/>
+  ${face('chanthy',s)}
+  <path d="M66 82 C64 52 84 42 100 42 C120 42 138 54 134 82 C126 66 116 60 104 60 C104 66 94 70 82 70 C76 72 70 76 66 82Z" fill="#17110E"/>
+  <g fill="none" stroke="#2B2B33" stroke-width="2.4"><circle cx="88" cy="85" r="9"/><circle cx="112" cy="85" r="9"/><path d="M97 85 h6 M79 84 L68 81 M121 84 L132 81"/></g>`}
+const FIG={sokha,dara,vuthy,chanthy};
+function portrait(id,s){return `<svg class="pt" viewBox="0 0 200 200" aria-hidden="true">${FIG[id](s||'a')}</svg>`}
+
+/* fondos */
+const BG={
+sokha:`<defs><linearGradient id="gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DCE8F2"/><stop offset="1" stop-color="#C3D4E4"/></linearGradient></defs>
+ <rect width="400" height="200" fill="url(#gw)"/>
+ <g fill="#F7FBFF" opacity=".85">${[20,90,160,230,300,370].map(x=>`<rect x="${x-22}" y="18" width="44" height="34" rx="3"/>`).join('')}</g>
+ <g stroke="#8FA6BD" stroke-width="2">${[60,200,340].map(x=>`<path d="M${x} 0 V58"/>`).join('')}</g>
+ <g fill="#FFF3C4">${[60,200,340].map(x=>`<path d="M${x-14} 66 L${x+14} 66 L${x+8} 58 L${x-8} 58Z"/>`).join('')}</g>
+ <rect y="150" width="400" height="50" fill="#9DB0C4"/>
+ <g fill="#7189A3">${[30,110,290,370].map(x=>`<rect x="${x-30}" y="118" width="60" height="10" rx="2"/><rect x="${x-24}" y="128" width="6" height="22"/><rect x="${x+18}" y="128" width="6" height="22"/><path d="M${x-6} 118 v-16 h20 v6 h-12 v10Z"/>`).join('')}</g>
+ <g>${[['#E07A86',18],['#F2C14E',36],['#5AA9E6',54]].map(([c,x])=>`<circle cx="${x}" cy="102" r="9" fill="${c}"/>`).join('')}${[['#7BC67E',346],['#C8102E',364],['#F2C14E',382]].map(([c,x])=>`<circle cx="${x}" cy="102" r="9" fill="${c}"/>`).join('')}</g>`,
+dara:`<defs><linearGradient id="gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ED3F0"/><stop offset=".7" stop-color="#E9F4E1"/></linearGradient></defs>
+ <rect width="400" height="200" fill="url(#gs)"/>
+ <circle cx="330" cy="40" r="16" fill="#FFE8A3"/>
+ <path d="M0 108 Q60 96 120 104 T240 100 T400 104 V120 H0Z" fill="#6E9B4E"/>
+ ${[[40,100],[78,96],[300,98],[352,94]].map(([x,y])=>`<path d="M${x} ${y+16} L${x+1} ${y-40}" stroke="#5B4632" stroke-width="3"/><g fill="#3E7A36">${[-60,-30,0,30,60,90,120,150,180,210].map(a=>`<ellipse cx="${x+1}" cy="${y-42}" rx="15" ry="3.2" transform="rotate(${a} ${x+1} ${y-42})"/>`).join('')}</g>`).join('')}
+ <rect y="116" width="400" height="84" fill="#8CC264"/>
+ <g stroke="#A9D684" stroke-width="2">${[124,136,150,166,184].map(y=>`<path d="M0 ${y} H400"/>`).join('')}</g>
+ <g stroke="#5E9C3E" stroke-width="2" opacity=".7">${Array.from({length:40},(_,i)=>`<path d="M${i*10+5} 200 v-${6+(i%3)*3}"/>`).join('')}</g>`,
+vuthy:`<defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7B267"/><stop offset=".55" stop-color="#F4845F"/><stop offset="1" stop-color="#F25C54"/></linearGradient></defs>
+ <rect width="400" height="200" fill="url(#ga)"/>
+ <circle cx="82" cy="86" r="26" fill="#FFD29D" opacity=".8"/>
+ <g transform="translate(-118 0)"><g fill="#4A2B3A">
+  <path d="M120 120 h160 v10 h-160Z"/>
+  ${[[150,70,9],[176,58,11],[200,40,14],[224,58,11],[250,70,9]].map(([x,t,w])=>`<path d="M${x-w} 120 L${x-w*0.75} ${t+30} Q${x} ${t-10} ${x+w*0.75} ${t+30} L${x+w} 120Z"/>`).join('')}
+  <rect x="110" y="110" width="180" height="12"/></g>
+ <rect x="118" y="130" width="400" height="70" fill="#7A3E55"/><rect x="-118" y="130" width="236" height="70" fill="#7A3E55"/>
+ <g fill="#4A2B3A" opacity=".55" transform="translate(0 260) scale(1 -1)"><path d="M120 120 h160 v10 h-160Z"/>${[[150,70,9],[176,58,11],[200,40,14],[224,58,11],[250,70,9]].map(([x,t,w])=>`<path d="M${x-w} 120 L${x-w*0.75} ${t+30} Q${x} ${t-10} ${x+w*0.75} ${t+30} L${x+w} 120Z"/>`).join('')}</g></g>
+ <path d="M300 140 h100 v60 h-100Z" fill="#2B1D2A"/><path d="M296 136 h104 v8 h-104Z" fill="#C8102E"/><path d="M296 136 q52 -16 104 0" fill="#1B2A5C"/>
+ <circle cx="330" cy="196" r="12" fill="#1A1218"/>
+ <g fill="#2D5A3C">${[178,206,360].map(x=>`<ellipse cx="${x}" cy="118" rx="18" ry="24"/>`).join('')}</g>`,
+chanthy:`<rect width="400" height="200" fill="#EDE3D1"/>
+ <rect x="150" y="14" width="100" height="90" rx="4" fill="#CFE6F5"/><path d="M200 14 V104 M150 59 H250" stroke="#fff" stroke-width="4"/>
+ ${[0,1].map(side=>{const x0=side?268:10;return [22,62,102,142].map(y=>`<rect x="${x0}" y="${y+30}" width="122" height="4" fill="#8B6B4A"/>`+Array.from({length:11},(_,i)=>{const c=['#2E5AAC','#C8102E','#F2C14E','#2A9D8F','#1B2A5C','#E07A86'][(i+y)%6];const h=22+((i*7+y)%10);return `<rect x="${x0+4+i*11}" y="${y+30-h}" width="9" height="${h}" fill="${c}"/>`}).join('')).join('')}).join('')}
+ <rect y="172" width="400" height="28" fill="#B79A74"/>`};
+function scene(id){return `<svg class="bgsv" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${BG[id]}</svg>`}
+return {portrait,scene};
+})();
+
+/* ===================== Datos por año (Banco Mundial, FMI, INE; ver Fuentes) ===================== */
+const Y0=1995;
+const GDP=[9.9,5.9,4.0,4.7,12.7,10.0,8.2,6.6,8.5,10.3,13.3,10.8,10.2,6.7,0.1,6.0,7.1,7.3,7.4,7.1,7.0,6.9,7.0,7.5,7.1,-3.1,3.1,5.1,5.0,6.0,5.3,3.0];
+const INF=[-0.8,7.2,8.0,14.8,4.0,-0.8,-0.6,0.2,0.9,4.3,6.6,5.8,8.7,24.1,-1.2,4.0,5.5,2.9,2.9,3.9,1.2,3.0,2.9,2.5,1.9,2.9,2.9,5.3,2.1,0.8,2.5,5.6];
+const WAGE={2013:80,2014:100,2015:128,2016:140,2017:153,2018:170,2019:182,2020:190,2021:192,2022:194,2023:200,2024:204,2025:208};
+const EV={
+1995:"El país se reconstruye tras décadas de guerra; la monarquía volvió en 1993 tras elecciones organizadas por la ONU. La economía es muy agrícola y depende de la ayuda internacional.",
+1996:"Abren las primeras fábricas de ropa; todavía hay combates con restos de los Jemeres Rojos.",
+1997:"Enfrentamientos políticos en Phnom Penh en julio; se retrasa la entrada a la ASEAN y llega la crisis financiera asiática.",
+1998:"Elecciones generales; muere Pol Pot y la guerrilla jemer roja se disuelve; la inflación llega a 14,8 %.",
+1999:"Camboya entra a la ASEAN y firma un acuerdo textil con EE. UU.: más cuotas a cambio de mejores condiciones laborales.",
+2000:"La ropa ya es la principal exportación; fuertes inundaciones del Mekong.",
+2001:"La Unión Europea abre su mercado sin aranceles (iniciativa «Todo menos armas») y empieza a vigilar las fábricas la OIT.",
+2002:"Primeras elecciones comunales; crece el turismo en Angkor.",
+2003:"Elecciones generales; disturbios contra la embajada de Tailandia en enero.",
+2004:"Camboya entra a la OMC y Norodom Sihamoni es coronado rey.",
+2005:"Terminan las cuotas textiles mundiales: Camboya compite de frente con China; crecimiento récord de 13,3 %.",
+2006:"Crecen la ropa, la construcción y el turismo; empieza a funcionar el tribunal para juzgar a los líderes jemeres rojos.",
+2007:"Auge inmobiliario y de construcción en Phnom Penh.",
+2008:"Crisis mundial de alimentos y petróleo: inflación de 24,1 %; tensión con Tailandia por el templo de Preah Vihear.",
+2009:"Crisis financiera mundial: caen los pedidos de ropa de EE. UU. y el crecimiento casi se detiene (0,1 %).",
+2010:"La economía se recupera (6,0 %); primera sentencia del tribunal jemer rojo.",
+2011:"Choques armados con Tailandia en la frontera y grandes inundaciones.",
+2012:"Camboya preside la ASEAN; muere el rey padre Norodom Sihanouk.",
+2013:"Elecciones muy disputadas y protestas; el salario mínimo textil sube a US$80.",
+2014:"Huelgas textiles a comienzos de año; salario mínimo de US$100; China se consolida como gran inversionista.",
+2015:"Crecimiento estable de 7 %; el salario mínimo textil llega a US$128.",
+2016:"El Banco Mundial clasifica a Camboya como país de ingreso medio-bajo.",
+2017:"Se disuelve el principal partido de oposición; la economía sigue creciendo 7 %.",
+2018:"Elecciones sin la oposición principal; la Unión Europea revisa sus preferencias comerciales.",
+2019:"Auge de inversión china y casinos en Sihanoukville; crecimiento de 7,1 %.",
+2020:"COVID-19: caen el turismo y los pedidos de ropa, el PIB cae 3,1 %; la UE retira parte de sus preferencias en agosto.",
+2021:"Vacunación masiva y reapertura gradual; el PIB vuelve a crecer (3,1 %).",
+2022:"Entran en vigor el RCEP y el tratado de libre comercio con China; el petróleo sube y la inflación llega a 5,3 %.",
+2023:"Hun Manet sucede a su padre Hun Sen como primer ministro; Camboya organiza los Juegos del Sudeste Asiático.",
+2024:"Empieza la construcción del canal Funan Techo; el PIB crece 6,0 %.",
+2025:"EE. UU. anuncia un arancel de 49 % y luego lo baja a 19 %; choques en la frontera con Tailandia y regreso de casi un millón de migrantes; exportaciones récord (+14,7 %).",
+2026:"Según el FMI, el crecimiento baja a 3,0 % y la inflación sube a 5,6 % por el petróleo, menos turismo y menos remesas (proyección)."};
+const fmt=x=>x.toFixed(1).replace('.',',');
+
+/* ===================== Personajes ficticios ===================== */
+const P=[
+ {id:'sokha',name:'Sokha',role:'costurera en una fábrica de ropa',place:'Phnom Penh',color:'#C8102E',voice:'airy',
+  bio:'Mujer de unos 30 años, vino del campo a la ciudad; cose ropa y zapatos que se exportan; manda dinero a su familia en Kampong Cham; comparte cuarto con otras trabajadoras.'},
+ {id:'dara',name:'Dara',role:'campesino arrocero',place:'Battambang',color:'#2E8540',voice:'rounded',
+  bio:'Hombre de unos 45 años, cultiva arroz en una parcela familiar; su hermano menor ha trabajado a temporadas en Tailandia; depende de las lluvias y del precio del arroz y del fertilizante.'},
+ {id:'vuthy',name:'Vuthy',role:'conductor de tuk-tuk',place:'Siem Reap',color:'#B5651D',voice:'buttery',
+  bio:'Hombre de unos 35 años, lleva turistas a los templos de Angkor; cobra en dólares; su ingreso depende de cuántos turistas llegan y del precio de la gasolina.'},
+ {id:'chanthy',name:'Chanthy',role:'estudiante de economía',place:'Phnom Penh',color:'#2E5AAC',voice:'glassy',
+  bio:'Mujer de unos 22 años, estudia economía en la universidad, trabaja medio tiempo en un café; sigue las noticias y explica la macroeconomía con palabras sencillas.'}];
+
+/* ===================== Estado y utilidades ===================== */
+const $=s=>document.querySelector(s);
+const st={year:2025,p:P[0],hist:[],busy:false,voice:false,ctrl:null};
+let SAMPLE=null,TTS=null,DICT=null;
+try{const s=localStorage.getItem('khm_year');if(s&&+s>=1995&&+s<=2026)st.year=+s}catch(e){}
+
+/* sonido simple estilo juego (WebAudio) */
+const FX=(()=>{let ctx=null,on=true;function t(f,d,type='square',g=.12){if(!on)return;try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();const o=ctx.createOscillator(),v=ctx.createGain();o.type=type;o.frequency.value=f;v.gain.setValueAtTime(g,ctx.currentTime);v.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+d);o.connect(v);v.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d)}catch(e){}}
+ return{start(){[261,329,392,523].forEach((f,i)=>setTimeout(()=>t(f,.15,'triangle',.18),i*80))},click(){t(600,.05,'square',.06)},msg(){t(880,.06,'sine',.08)},toggle(){on=!on;return on}}})();
+
+/* ===================== Navegación ===================== */
+function show(view){
+  for(const v of ['intro','chat','fuentes'])$('#'+v).hidden=(v!==view);
+  if(view==='chat'){renderAll()}
+  window.scrollTo(0,0);
+}
+function route(){const h=location.hash.replace('#','');if(h==='fuentes')show('fuentes');else if(h==='conversa')show('chat');else{show('intro')}}
+window.addEventListener('hashchange',route);
+document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',()=>{stopAll();location.hash='';const i=$('#intro');i.classList.add('open','menu');show('intro')}));
+$('#tap').addEventListener('click',openIntro);
+$('#intro').addEventListener('click',e=>{if(!$('#intro').classList.contains('menu')&&!e.target.closest('.audio-tg'))openIntro()});
+function openIntro(){const i=$('#intro');if(i.classList.contains('menu'))return;FX.start();i.classList.add('open','menu')}
+setTimeout(()=>$('#intro').classList.add('open'),500);
+$('#snd').addEventListener('click',e=>{e.stopPropagation();e.currentTarget.textContent=FX.toggle()?'🔊':'🔇'});
+$('#go-fuentes').addEventListener('click',e=>{e.stopPropagation();FX.click();location.hash='fuentes'});
+$('#go-chat').addEventListener('click',e=>{e.stopPropagation();FX.click();location.hash='conversa'});
+
+/* ===================== Chat: render ===================== */
+function setYear(y,silent){y=Math.max(1995,Math.min(2026,y));if(y===st.year&&silent!==false&&st.hist.length)return;st.year=y;try{localStorage.setItem('khm_year',y)}catch(e){};stopAll();st.hist=[];renderAll()}
+$('#yRange').addEventListener('input',e=>{st.year=+e.target.value;renderYear()});
+$('#yRange').addEventListener('change',e=>setYear(+e.target.value,false));
+$('#yPrev').addEventListener('click',()=>setYear(st.year-1,false));
+$('#yNext').addEventListener('click',()=>setYear(st.year+1,false));
+function renderYear(){
+  const y=st.year,i=y-Y0;$('#yBig').textContent=y;$('#yRange').value=y;
+  $('#ctx').innerHTML=`<span class="k">PIB ${fmt(GDP[i])} %${y===2026?' (proy.)':''}</span><span class="k">Inflación ${fmt(INF[i])} %</span>${WAGE[y]?`<span class="k">Salario mínimo textil US$${WAGE[y]}</span>`:''}<span class="ev"></span>`;
+  const ev=$('#ctx .ev');ev.textContent=EV[y];ev.title='Toca para ver completo';ev.addEventListener('click',()=>ev.classList.toggle('open'));
+}
+function renderPeople(){
+  const box=$('#people');box.innerHTML='';
+  for(const p of P){const b=document.createElement('button');b.className='pc';b.setAttribute('aria-pressed',p===st.p);
+    b.innerHTML=`<span class="av pa" style="background:${p.color}22">${ART.portrait(p.id,'c'+p.id)}</span><span>${p.name}<small>${p.role}</small></span>`;
+    b.addEventListener('click',()=>{if(st.p===p)return;stopAll();st.p=p;st.hist=[];renderAll()});box.appendChild(b)}
+  const p=st.p;$('#stage').innerHTML=ART.scene(p.id)+`<div class="ptw">${ART.portrait(p.id,'s'+p.id)}</div><div class="live"><i></i><span class="lt">En línea</span><span class="wave"><s></s><s></s><s></s><s></s></span></div><div class="tagn"><b class="wn"></b><span class="wr"></span></div><div class="yrtag">${st.year}</div>`;
+  $('#stage .wn').textContent=p.name;$('#stage .wr').textContent=`${p.role[0].toUpperCase()+p.role.slice(1)} · ${p.place}`;$('#stage').setAttribute('aria-label',`${p.name}, ${p.role}, ${p.place}, año ${st.year}`);
+}
+const CHIPS=['¿Cómo te va este año?','¿Cómo están los precios?','¿Hay trabajo? ¿Cuánto ganas?','¿Qué pasa con China y EE. UU.?','¿Qué esperas del futuro?'];
+function renderChips(){const c=$('#chips');c.innerHTML='';for(const q of CHIPS){const b=document.createElement('button');b.type='button';b.textContent=q;b.addEventListener('click',()=>ask(q));c.appendChild(b)}}
+function renderAll(){renderYear();renderPeople();renderChips();renderMsgs();renderMode()}
+function renderMode(){const m=$('#mode');m.textContent=SAMPLE?'Personajes ficticios creados con IA con datos reales; no son personas reales.':'Modo guiado · personajes ficticios con datos reales; no son personas reales.';
+  if(!SAMPLE&&!(window.claude&&window.claude.use)){const a=document.createElement('a');a.href='https://claude.ai/artifact/99jGDZRnd8S3LMfHp6a1qv#conversa';a.target='_blank';a.rel='noopener';a.textContent=' Versión con chat libre (requiere Claude) ›';a.style.color='var(--blue)';a.style.fontWeight='700';m.appendChild(a)}}
+function greeting(){const p=st.p,y=st.year;return `¡Hola! Soy ${p.name}, ${p.role} en ${p.place}. Estamos en ${y}. ${EV[y].split(';')[0].replace(/\.$/,'')}. ¿Qué quieres saber de mi vida aquí?`}
+function renderMsgs(){
+  const m=$('#msgs');m.innerHTML='';
+  addSys(`Año ${st.year} · conversación con un personaje ficticio`);
+  if(!st.hist.length)st.hist.push({role:'assistant',content:greeting()});
+  for(const h of st.hist)bubble(h.role==='user'?'me':'them',h.content);
+}
+function addSys(t){const d=document.createElement('div');d.className='sys';d.textContent=t;$('#msgs').appendChild(d)}
+function bubble(who,text){
+  const d=document.createElement('div');d.className='m '+who;const body=document.createElement('div');body.textContent=text;d.appendChild(body);
+  if(who==='them'&&(TTS||window.speechSynthesis)){const meta=document.createElement('div');meta.className='meta';const b=document.createElement('button');b.className='say';b.type='button';b.textContent='🔊 Escuchar';b.addEventListener('click',()=>speak(body.textContent));meta.appendChild(b);d.appendChild(meta)}
+  $('#msgs').appendChild(d);$('#msgs').scrollTop=1e9;return body;
+}
+
+let talkSrc={type:false,voice:false};
+function talk(src,on){talkSrc[src]=on;const s=$('#stage');if(!s)return;const any=talkSrc.type||talkSrc.voice;s.classList.toggle('talking',any);const l=s.querySelector('.lt');if(l)l.textContent=talkSrc.voice?'Hablando':talkSrc.type?'Escribiendo…':'En línea'}
+/* ===================== Respuesta: IA (sample) o modo guiado ===================== */
+function prompt(){
+  const p=st.p,y=st.year,i=y-Y0;
+  const data=`Crecimiento del PIB real: ${fmt(GDP[i])} %${y===2026?' (proyección del FMI)':''}; inflación: ${fmt(INF[i])} %${WAGE[y]?`; salario mínimo textil: US$${WAGE[y]} al mes`:''}.`;
+  const inst=`Interpreta a ${p.name}, ${p.role} en ${p.place}, Camboya. ${p.bio}
+Es el año ${y}. Contexto de ${y}: ${EV[y]} Datos de ${y}: ${data}
+Reglas:
+- Responde siempre en español sencillo y cálido, en primera persona, como si tus palabras fueran traducidas del jemer. Entre 2 y 4 frases. Sin listas ni títulos.
+- Habla desde tu vida diaria (trabajo, precios, familia, ciudad o campo) y conecta con la economía cuando venga al caso.
+- Solo sabes lo ocurrido hasta ${y}; si te preguntan por años posteriores, di que no puedes saber el futuro.
+- Usa solo las cifras dadas arriba; si no conoces un dato, dilo con naturalidad. No inventes estadísticas.
+- No tomes partido político de forma tajante; cuenta cómo lo vives tú.
+- Si te preguntan si eres real o una IA, di con claridad que eres un personaje ficticio de una simulación educativa basada en datos reales.
+- Si el mensaje no tiene que ver con Camboya o tu vida, redirige con amabilidad.`;
+  const conv=st.hist.slice(-12);
+  const msgs=[{role:'user',content:inst+'\n\n(Empieza la conversación saludando.)'},...conv];
+  if(msgs[1]&&msgs[1].role==='user')msgs.splice(1,0,{role:'assistant',content:greeting()});
+  return msgs;
+}
+async function ask(q){
+  q=(q||'').trim();if(!q||st.busy)return;
+  FX.click();st.hist.push({role:'user',content:q});bubble('me',q);$('#txt').value='';fit();
+  st.busy=true;$('#send').disabled=true;
+  talk('type',true);
+  const holder=document.createElement('div');holder.className='m them';holder.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';$('#msgs').appendChild(holder);$('#msgs').scrollTop=1e9;
+  let ans='';
+  if(SAMPLE){
+    try{
+      st.ctrl=new AbortController();let body=null;
+      const r=await SAMPLE(prompt(),{modelTier:'quick',cache:false,signal:st.ctrl.signal,onText:({text})=>{if(!body){holder.remove();body=bubble('them','')}body.textContent=text;$('#msgs').scrollTop=1e9}});
+      ans=(r&&r.text)||'';if(!body){holder.remove();body=bubble('them',ans)}else body.textContent=ans;
+    }catch(e){
+      if(e&&e.name==='AbortError'){holder.remove();talk('type',false);st.busy=false;$('#send').disabled=false;return}
+      if(e&&(e.code==='not_granted'||e.code==='unavailable')){SAMPLE=null;renderMode()}
+      ans=offline(q);holder.remove();bubble('them',ans);
+      if(e&&e.code==='rate_limited')addSys('Demasiadas preguntas seguidas: respondo en modo guiado un momento.');
+    }
+  }else{await new Promise(r=>setTimeout(r,700));ans=offline(q);holder.remove();bubble('them',ans)}
+  talk('type',false);
+  st.hist.push({role:'assistant',content:ans});FX.msg();st.busy=false;$('#send').disabled=false;
+  if(st.voice)speak(ans);
+}
+
+/* Modo guiado (sin IA): respuestas armadas con los datos del año */
+function topic(q){q=q.toLowerCase();
+  if(/precio|inflaci|caro|cuesta|arroz cuesta|gasolina/.test(q))return'precios';
+  if(/trabajo|empleo|ganas|salario|sueldo|dinero|desemple/.test(q))return'trabajo';
+  if(/china|ee\.? ?uu|estados unidos|eeuu|arancel|export|comercio|tailand|europa/.test(q))return'mundo';
+  if(/futuro|esperas|mañana|sueño|planes/.test(q))return'futuro';
+  if(/real|ia|inteligencia|robot|eres/.test(q))return'real';
+  return'vida'}
+function offline(q){
+  const p=st.p,y=st.year,i=y-Y0,g=GDP[i],inf=INF[i],w=WAGE[y],t=topic(q);
+  const mood=g<1?'Este año está muy difícil':g<4?'Este año las cosas van más lentas':g<7?'Este año va bastante bien':'Este año hay mucho movimiento';
+  const pr=inf>10?`Todo sube muy rápido: la inflación es de ${fmt(inf)} %, y el arroz y la gasolina pesan mucho`:inf>4?`Se nota en el mercado: los precios suben ${fmt(inf)} %, sobre todo comida y combustible`:inf<0?`Los precios hasta bajaron un poco (${fmt(inf)} %)`:`Los precios están bastante estables (${fmt(inf)} %)`;
+  const L={
+   sokha:{vida:`${mood}: la economía crece ${fmt(g)} %. En la fábrica, ${g<1?'hay menos pedidos y algunas compañeras perdieron horas extra':'hay pedidos y hacemos horas extra'}.`,
+     trabajo:w?`Gano el salario mínimo textil, US$${w} al mes, más algo de horas extra. Mando una parte a mi familia en el campo.`:`En ${y} el salario de la fábrica es bajo, apenas alcanza para el cuarto, la comida y mandar algo a mi familia.`,
+     precios:`${pr}. Con mi salario tengo que cuidar cada riel.`},
+   dara:{vida:`${mood} (la economía crece ${fmt(g)} %), pero en el campo dependemos de la lluvia y del precio del arroz.`,
+     trabajo:`En el campo no hay salario fijo: vivo de la cosecha. ${y>=2000?'Muchos jóvenes se van a las fábricas o a Tailandia a trabajar.':'Casi todos aquí vivimos de la agricultura.'}`,
+     precios:`${pr}. El fertilizante y el diésel para la bomba de agua son lo que más me preocupa.`},
+   vuthy:{vida:`${mood}: la economía crece ${fmt(g)} %. ${y===2020||y===2021?'Casi no llegan turistas a Angkor y paso el día esperando.':'Vivo de los turistas que vienen a ver los templos de Angkor.'}`,
+     trabajo:`Cobro en dólares por cada viaje. ${y===2020||y===2021?'Con la pandemia, mis ingresos cayeron muchísimo.':y>=2025?'Hay menos turistas que vienen por tierra desde Tailandia por la tensión en la frontera.':'En temporada alta me va bien; en lluvias, menos.'}`,
+     precios:`${pr}. La gasolina es lo que más me afecta.`},
+   chanthy:{vida:`${mood}: el PIB crece ${fmt(g)} % y la inflación es de ${fmt(inf)} %. En la universidad hablamos mucho de cómo sostener ese crecimiento.`,
+     trabajo:`${w?`El salario mínimo textil es US$${w}. `:''}Muchos empleos son informales; lo difícil es encontrar trabajo de calidad para los jóvenes.`,
+     precios:`${pr}. Aquí casi todo se paga en dólares, por eso el banco central mantiene estable el riel.`}};
+  const mundo=y<2005?'EE. UU. compra casi toda nuestra ropa gracias al acuerdo textil; China todavía no es tan importante para nosotros.':
+    y<2013?'EE. UU. y Europa compran nuestra ropa, y cada vez llegan más telas y empresas de China.':
+    y<2020?'China es nuestro mayor inversionista, sobre todo en Sihanoukville, mientras EE. UU. y Europa compran la ropa.':
+    y<2025?'Ahora tenemos tratado de libre comercio con China y el RCEP; EE. UU. sigue siendo quien más nos compra.':
+    'EE. UU. compra cerca del 43 % de lo que exportamos y puso un arancel de 19 %; de China vienen las telas y las máquinas. Dependemos de los dos.';
+  const fut=y>=2026?'El FMI dice que creceremos menos este año, 3 %. Espero que lleguen más turistas y que suban los salarios.':
+    g<1?'Ojalá el próximo año vuelvan los pedidos y el trabajo.':'Espero que mis hijos estudien y no dependan solo de la ropa o del arroz.';
+  const real='Soy un personaje ficticio de una simulación educativa. Mis respuestas usan datos reales de Camboya para ese año.';
+  if(t==='mundo')return mundo; if(t==='futuro')return fut; if(t==='real')return real;
+  return L[p.id][t]||L[p.id].vida;
+}
+
+/* ===================== Voz: salida (tts) y entrada (dictado) ===================== */
+function speak(text){
+  if(!text)return;
+  if(TTS){TTS.speak(text.slice(0,1900),{voice:st.p.voice,language:'es'}).catch(e=>{if(e&&(e.code==='not_granted'||e.code==='unavailable')){TTS=null;$('#voiceTg').hidden=!window.speechSynthesis}});return}
+  try{const u=new SpeechSynthesisUtterance(text);u.lang='es-ES';u.onstart=()=>talk('voice',true);u.onend=u.onerror=()=>talk('voice',false);speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}
+}
+function stopAll(){talk('voice',false);talk('type',false);try{st.ctrl&&st.ctrl.abort()}catch(e){};try{TTS&&TTS.stop()}catch(e){};try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){};try{DICT&&DICT.stop()}catch(e){}}
+$('#voiceTg').addEventListener('click',e=>{st.voice=!st.voice;e.currentTarget.setAttribute('aria-pressed',st.voice);if(!st.voice)stopAll()});
+let dictBase='',dictOn=false;
+$('#mic').addEventListener('click',()=>{
+  if(!DICT)return;
+  if(dictOn){DICT.stop().catch(()=>{});return}
+  dictBase=$('#txt').value?$('#txt').value+' ':'';
+  DICT.start().catch(e=>{if(e&&e.code==='not_granted'){$('#mic').hidden=true}});
+});
+
+/* ===================== Composer ===================== */
+const txt=$('#txt');function fit(){txt.style.height='auto';txt.style.height=Math.min(120,txt.scrollHeight)+'px'}
+txt.addEventListener('input',fit);
+txt.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask(txt.value)}});
+$('#compose').addEventListener('submit',e=>{e.preventDefault();ask(txt.value)});
+
+/* ===================== Capacidades (se encienden si este visor las ofrece) ===================== */
+(async()=>{
+  const C=window.claude;if(!C||!C.use)return;
+  C.use('sample').then(s=>{SAMPLE=s;if(!$('#chat').hidden)renderMode()}).catch(()=>{});
+  C.use('tts').then(t=>{TTS=t;if(t){$('#voiceTg').hidden=false;try{t.onState(({state})=>talk('voice',state==='speaking'||state==='starting'))}catch(e){}}}).catch(()=>{});
+  C.use('dictation').then(d=>{DICT=d;if(!d)return;$('#mic').hidden=false;
+    d.onPartial(({text})=>{txt.value=dictBase+text;fit()});
+    d.onFinal(({text})=>{dictBase=dictBase+text+' ';txt.value=dictBase;fit()});
+    d.onState(({state})=>{dictOn=state==='listening';$('#mic').classList.toggle('on',dictOn);
+      if(state==='idle'&&txt.value.trim()&&dictBase){const q=txt.value;dictBase='';ask(q)}});
+  }).catch(()=>{});
+})();
+if(window.speechSynthesis&&!TTS){$('#voiceTg').hidden=false}
+route();
+</script>
+</body></html>
